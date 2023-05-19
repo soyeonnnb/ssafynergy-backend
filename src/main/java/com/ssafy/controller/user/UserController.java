@@ -1,5 +1,9 @@
 package com.ssafy.controller.user;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.model.dto.user.User;
 import com.ssafy.model.service.user.UserService;
+import com.ssafy.util.JwtUtil;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -27,6 +32,9 @@ public class UserController {
 
 	@Autowired
 	private UserService us;
+
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	private String SUCCESS = "success";
 	private String FAIL = "fail";
@@ -44,7 +52,7 @@ public class UserController {
 		}
 		// 소셜로그인이 아님을 확인
 		user.setSocialLogin("F"); // false
-		
+
 		int result = us.regist(user);
 		if (result == 1) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
@@ -55,14 +63,33 @@ public class UserController {
 
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	public ResponseEntity<?> login(HttpSession session, @RequestBody User user) {
-		User dbUser = us.selectById(user.getId());
-		if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
-			session.setAttribute("loginUser", dbUser);
-			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Map<String, Object>> login(HttpSession session, @RequestBody User user) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		HttpStatus status = null;
+		try {
+			User dbUser = us.selectByIdAndPassword(user);
+//			System.out.println(dbUser);
+			if (dbUser != null) {
+				result.put("access-token", jwtUtil.createToken("id", user.getId()));
+				result.put("message", SUCCESS);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				result.put("message", FAIL);
+				status = HttpStatus.BAD_REQUEST;
+			}
+		} catch (UnsupportedEncodingException e) {
+			result.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
+		return new ResponseEntity<Map<String, Object>>(result, status);
+
+//		User dbUser = us.selectById(user.getId());
+//		if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
+//			session.setAttribute("loginUser", dbUser);
+//			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
+//		}
 	}
 
 //	@ApiOperation(value = "비밀번호 재설정")
@@ -77,11 +104,11 @@ public class UserController {
 		session.removeAttribute("loginUser");
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.ACCEPTED);
 	}
-	
-	@ApiOperation(value= "회원정보 열람")
+
+	@ApiOperation(value = "회원정보 열람")
 	@GetMapping("/{id}")
-	public ResponseEntity<?> viewUserInfo(@PathVariable String id){
-		User user=us.selectById(id);
+	public ResponseEntity<?> viewUserInfo(@PathVariable String id) {
+		User user = us.selectById(id);
 		if (user == null) {
 			return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 		} else {

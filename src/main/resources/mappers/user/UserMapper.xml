@@ -13,6 +13,9 @@
 	<select id="selectByNickname" parameterType="String" resultType="User">
 		select * from user where nickname=#{nickname}
 	</select>
+	<select id="selectByIdAndPassword" parameterType="User" resultType="User">
+		select id, name from user where id=#{id} and password=#{password}
+	</select>
 	<update id="update" parameterType="User">
 		update user set nickname=#{nickname} where id=#{id}
 	</update>

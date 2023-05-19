@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
 		return ud.selectByNickname(nickname);
 	}
 
+	@Override
+	public User selectByIdAndPassword(User user) {
+		return ud.selectByIdAndPassword(user);
+	}
+
 }

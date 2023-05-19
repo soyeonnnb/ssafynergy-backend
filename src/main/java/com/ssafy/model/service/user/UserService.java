@@ -6,6 +6,7 @@ public interface UserService {
 	int regist(User user);
 	User selectById(String id);
 	User selectByNickname(String username);
+	User selectByIdAndPassword(User user);
 	int update(User user);
 	int withdrawal(String id);
 }
