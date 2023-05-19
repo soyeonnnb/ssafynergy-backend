@@ -3,6 +3,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.user.UserDao">
-
-	
+	<insert id="insert" parameterType="User">
+		INSERT INTO user
+		VALUES (#{id}, #{password}, #{name}, #{nickname}, now(), #{email}, 'N', #{img}, #{socialLogin})
+	</insert>
+	<select id="selectById" parameterType="String" resultType="User">
+		select * from user where id=#{id}
+	</select>
+	<select id="selectByNickname" parameterType="String" resultType="User">
+		select * from user where nickname=#{nickname}
+	</select>
+	<update id="update" parameterType="User">
+		update user set nickname=#{nickname} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+	delete from user where id=#{id}
+	</delete>
 </mapper>
