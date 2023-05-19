@@ -3,6 +3,33 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeDao">
-
-	
+	<insert id="insert" parameterType="Challenge" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO challenge
+		(name, description, limit_person_num, public_type, challenge_difficulty_id, opportunity)
+		VALUES
+		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity})
+	</insert>
+	<update id="update" parameterType="Challenge">
+		UPDATE challenge
+		SET 
+			name = #{name},
+			description = #{description},
+			limit_person_num = #{limitPersonNum},
+			public_type = #{publicType},
+			challenge_difficulty_id = #{challengeDifficultyId},
+			opportunity = #{opportunity}
+		WHERE id = #{id}
+	</update>
+	<select id="search" parameterType="SearchCondition" resultType="Challenge">
+		SELECT * FROM challenge
+		<if test="key != 'none'">
+			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
+		</if>
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+	<select id="select" parameterType="int" resultType="Challenge">
+		SELECT * FROM challenge WHERE id=#{id}
+	</select>
 </mapper>

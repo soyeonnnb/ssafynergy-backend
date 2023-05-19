@@ -16,32 +16,27 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	public int insert(Review review) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.insert(review);
 	}
 
 	@Override
 	public int update(Review review) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.update(review);
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return rd.delete(id);
 	}
 
 	@Override
 	public List<Review> searchChallengeReview(String challengeId) {
-		// TODO Auto-generated method stub
-		return null;
+		return rd.searchChallengeReview(challengeId);
 	}
 
 	@Override
 	public List<Review> searchUserReview(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return rd.searchUserReview(userId);
 	}
 
 }

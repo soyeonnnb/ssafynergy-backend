@@ -16,32 +16,27 @@ public class ChallengeIngServiceImpl implements ChallengeIngService{
 	
 	@Override
 	public int insert(ChallengeIng challengeIng) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.insert(challengeIng);
 	}
 
 	@Override
 	public int update(ChallengeIng challengeIng) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.update(challengeIng);
 	}
 
 	@Override
 	public List<ChallengeIng> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.selectAll();
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.delete(id);
 	}
 
 	@Override
 	public List<ChallengeIng> search(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.search(userId);
 	}
 
 }

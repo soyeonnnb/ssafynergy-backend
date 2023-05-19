@@ -16,26 +16,22 @@ public class ChallengeParticipateServiceImpl implements ChallengeParticipateServ
 	
 	@Override
 	public int insert(ChallengeParticipate challengeParticipate) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.insert(challengeParticipate);
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.delete(id);
 	}
 
 	@Override
 	public int update(ChallengeParticipate challengeParticipate) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.update(challengeParticipate);
 	}
 
 	@Override
 	public List<ChallengeParticipate> search(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.search(userId);
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.ssafy.model.dao.challenge;
 
-public interface ChallengeContentDao {
+import com.ssafy.model.dto.challenge.ChallengeContent;
 
+public interface ChallengeContentDao {
+	int insert(ChallengeContent challengeContent);
+	int update(ChallengeContent challengeContent);
+	int delete(int id);
 }

@@ -7,7 +7,6 @@ public class SearchCondition {
 	private String orderByDir;
 
 	public SearchCondition() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public SearchCondition(String key, String word, String orderBy, String orderByDir) {

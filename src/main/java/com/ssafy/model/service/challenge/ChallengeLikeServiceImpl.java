@@ -16,20 +16,17 @@ public class ChallengeLikeServiceImpl implements ChallengeLikeService{
 	
 	@Override
 	public int insert(ChallengeLike challengeLike) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.insert(challengeLike);
 	}
 
 	@Override
 	public int delete(int challengeId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.delete(challengeId);
 	}
 
 	@Override
 	public List<ChallengeLike> search(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.search(userId);
 	}
 
 }

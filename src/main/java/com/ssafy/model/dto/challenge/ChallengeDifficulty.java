@@ -1,6 +1,6 @@
 package com.ssafy.model.dto.challenge;
 
-public class ChallengeDifficulty extends Challenge{
+public class ChallengeDifficulty{
 	private int id;
 	private String name;
 	private int index;

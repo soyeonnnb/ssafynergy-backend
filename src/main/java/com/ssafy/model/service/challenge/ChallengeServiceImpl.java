@@ -17,26 +17,22 @@ public class ChallengeServiceImpl implements ChallengeService{
 	
 	@Override
 	public int insert(Challenge challenge) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.insert(challenge);
 	}
 
 	@Override
 	public int update(Challenge challenge) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cd.update(challenge);
 	}
 
 	@Override
 	public List<Challenge> search(SearchCondition condition) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.search(condition);
 	}
 
 	@Override
 	public Challenge select(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.select(id);
 	}
 
 }

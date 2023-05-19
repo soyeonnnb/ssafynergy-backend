@@ -3,6 +3,30 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.challenge.ReviewDao">
-
-	
+	<insert id="insert" parameterType="Review" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO review
+		(title, content, Challenge_id, User_id, rating)
+		VALUES
+		(#{title}, #{content}, #{ChallengeId}, #{UserId}, #{rating})
+	</insert>
+	<update id="update" parameterType="Review">
+		UPDATE review
+		SET 
+			title = #{title},
+			content = #{content},
+			Challenge_id = #{ChallengeId},
+			User_id = #{UserId}
+			rating = #{rating}
+		WHERE id = #{id}
+	</update>
+	<delete id = "delete" parameterType="int">
+		DELETE FROM review
+		WHERE id = #{id}
+	</delete>
+	<select id="searchChallengeReview" parameterType="String" resultType="Review">
+		SELECT * FROM video WHERE challengeId=#{challengeId}
+	</select>
+	<select id="searchUserReview" parameterType="String" resultType="Review">
+		SELECT * FROM video WHERE userId=#{userId}
+	</select>
 </mapper>

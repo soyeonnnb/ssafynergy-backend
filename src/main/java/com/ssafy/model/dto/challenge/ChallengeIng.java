@@ -2,7 +2,7 @@ package com.ssafy.model.dto.challenge;
 
 import java.sql.Date;
 
-public class ChallengeIng extends ChallengeParticipate {
+public class ChallengeIng {
 	private int id;
 	private int challengeParticipateId;
 	private int index;
