@@ -129,5 +129,7 @@ public class Challenge {
 				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
 				+ opportunity + ", isGiveup=" + isGiveup + "]";
 	}
+
+	
 	
 }

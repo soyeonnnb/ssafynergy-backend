@@ -4,21 +4,20 @@
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeContentDao">
 	<insert id="insert" parameterType="ChallengeContent" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO challengeContent
+		INSERT INTO Challenge_content
 		(Challenge_id, index, content)
 		VALUES
 		(#{ChallengeId}, #{index}, #{content})
 	</insert>
 	<update id="update" parameterType="ChallengeContent">
-		UPDATE challengeContent
+		UPDATE Challenge_content
 		SET 
-			Challenge_id = #{ChallengeId},
 			index = #{index},
 			content = #{content},
-		WHERE id = #{id}
+		WHERE Challenge_id = #{ChallengeId}
 	</update>
 	<delete id = "delete" parameterType="int">
-		DELETE FROM challengeContent
+		DELETE FROM Challenge_content
 		WHERE id = #{id}
 	</delete>
 </mapper>

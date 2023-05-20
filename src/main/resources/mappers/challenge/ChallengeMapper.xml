@@ -4,13 +4,13 @@
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeDao">
 	<insert id="insert" parameterType="Challenge" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO challenge
+		INSERT INTO Challenge
 		(name, description, limit_person_num, public_type, challenge_difficulty_id, opportunity)
 		VALUES
 		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity})
 	</insert>
 	<update id="update" parameterType="Challenge">
-		UPDATE challenge
+		UPDATE Challenge
 		SET 
 			name = #{name},
 			description = #{description},
@@ -21,7 +21,7 @@
 		WHERE id = #{id}
 	</update>
 	<select id="search" parameterType="SearchCondition" resultType="Challenge">
-		SELECT * FROM challenge
+		SELECT * FROM Challenge
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
 		</if>
@@ -30,6 +30,6 @@
 		</if>
 	</select>
 	<select id="select" parameterType="int" resultType="Challenge">
-		SELECT * FROM challenge WHERE id=#{id}
+		SELECT * FROM Challenge WHERE id=#{id}
 	</select>
 </mapper>

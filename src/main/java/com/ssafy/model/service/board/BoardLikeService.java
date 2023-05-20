@@ -1,5 +1,9 @@
 package com.ssafy.model.service.board;
 
-public interface BoardLikeService  {
+import com.ssafy.model.dto.board.BoardLike;
 
+public interface BoardLikeService  {
+	int insert(BoardLike boardLike);
+	
+	int delete(BoardLike boardLike);
 }

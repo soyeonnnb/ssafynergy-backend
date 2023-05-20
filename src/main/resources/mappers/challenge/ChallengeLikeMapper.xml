@@ -4,16 +4,16 @@
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeLikeDao">
 	<insert id="insert" parameterType="ChallengeLike">
-		INSERT INTO challengeLike
+		INSERT INTO Challenge_Like
 		(User_id, Challenge_id)
 		VALUES
 		(#{UserId}, #{ChallengeId})
 	</insert>
 	<delete id = "delete" parameterType="int">
-		DELETE FROM challengeLike
+		DELETE FROM Challenge_Like
 		WHERE id = #{id}
 	</delete>
 	<select id="search" parameterType="String" resultType="ChallengeLike">
-		SELECT * FROM challengeLike WHERE userId = #{userId}
+		SELECT * FROM Challenge_Like WHERE userId = #{userId}
 	</select>
 </mapper>

@@ -20,8 +20,8 @@ public class ChallengeParticipateServiceImpl implements ChallengeParticipateServ
 	}
 
 	@Override
-	public int delete(int id) {
-		return cd.delete(id);
+	public int delete(ChallengeParticipate challengeParticipate) {
+		return cd.delete(challengeParticipate);
 	}
 
 	@Override
@@ -32,6 +32,11 @@ public class ChallengeParticipateServiceImpl implements ChallengeParticipateServ
 	@Override
 	public List<ChallengeParticipate> search(String userId) {
 		return cd.search(userId);
+	}
+
+	@Override
+	public List<ChallengeParticipate> getParticipatedPersonNum(int challengeId) {
+		return cd.getParticipatedPersonNum(challengeId);
 	}
 
 }

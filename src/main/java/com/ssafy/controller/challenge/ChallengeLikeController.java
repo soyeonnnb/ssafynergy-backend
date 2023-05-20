@@ -21,7 +21,7 @@ import com.ssafy.model.service.challenge.ChallengeLikeService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/challenge/like")
+@RequestMapping("/api/v1/challenge/like")
 public class ChallengeLikeController {
 	
 	@Autowired

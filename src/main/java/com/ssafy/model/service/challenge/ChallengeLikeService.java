@@ -11,4 +11,5 @@ public interface ChallengeLikeService {
 	
 	List<ChallengeLike> search(String userId);
 
+	List<ChallengeLike> getLikePersonNum(int challengeId);
 }

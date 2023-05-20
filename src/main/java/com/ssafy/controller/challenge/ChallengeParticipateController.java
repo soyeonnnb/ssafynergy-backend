@@ -36,8 +36,8 @@ public class ChallengeParticipateController {
 	
 	@DeleteMapping("/{id}")
 	@ApiOperation(value = "챌린지 신청을 취소한다.")
-	public ResponseEntity<String> delete(@PathVariable int id){
-		cs.delete(id);
+	public ResponseEntity<String> delete(@RequestBody ChallengeParticipate challengeParticipate, @PathVariable int id){
+		cs.delete(challengeParticipate);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

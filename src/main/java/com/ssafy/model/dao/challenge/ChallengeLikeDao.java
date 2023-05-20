@@ -8,4 +8,5 @@ public interface ChallengeLikeDao {
 	int insert(ChallengeLike challengeLike);
 	int delete(int challengeId);
 	List<ChallengeLike> search(String userId);
+	List<ChallengeLike> getLikePersonNum(int challengeId);
 }

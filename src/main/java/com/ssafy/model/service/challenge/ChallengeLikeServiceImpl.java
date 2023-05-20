@@ -29,4 +29,9 @@ public class ChallengeLikeServiceImpl implements ChallengeLikeService{
 		return cd.search(userId);
 	}
 
+	@Override
+	public List<ChallengeLike> getLikePersonNum(int challengeId) {
+		return cd.getLikePersonNum(challengeId);
+	}
+
 }

@@ -16,7 +16,7 @@ import com.ssafy.model.service.challenge.ChallengeContentService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/challenge")
+@RequestMapping("/api/v1/challenge/content")
 public class ChallengeContentController {
 	@Autowired
 	private ChallengeContentService cs;
