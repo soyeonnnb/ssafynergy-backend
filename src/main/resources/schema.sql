@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge` (
   `finish_at` DATETIME NOT NULL,
   `description` TEXT NULL,
   `limit_person_num` INT NOT NULL DEFAULT 1,
-  `public` TINYINT NOT NULL DEFAULT 0,
+  `public_type` TINYINT NOT NULL DEFAULT 0,
   `challenge_difficulty_id` INT NOT NULL,
   `opportunity` INT NOT NULL DEFAULT 1,
   `is_giveup` TINYINT NOT NULL DEFAULT 0,

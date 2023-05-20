@@ -3,6 +3,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeContentDao">
-
-	
+	<insert id="insert" parameterType="ChallengeContent" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Challenge_content
+		(Challenge_id, index, content)
+		VALUES
+		(#{ChallengeId}, #{index}, #{content})
+	</insert>
+	<update id="update" parameterType="ChallengeContent">
+		UPDATE Challenge_content
+		SET 
+			index = #{index},
+			content = #{content},
+		WHERE Challenge_id = #{ChallengeId}
+	</update>
+	<delete id = "delete" parameterType="int">
+		DELETE FROM Challenge_content
+		WHERE id = #{id}
+	</delete>
 </mapper>
