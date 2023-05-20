@@ -87,6 +87,7 @@ public class Board {
 	public String toString() {
 		return "Board [id=" + id + ", title=" + title + ", content=" + content + ", created_at=" + created_at
 				+ ", userId=" + userId + ", boardCategoryId=" + boardCategoryId + ", viewCnt=" + viewCnt + "]";
+
 	}
 	
 }

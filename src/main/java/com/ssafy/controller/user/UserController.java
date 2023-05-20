@@ -72,6 +72,9 @@ public class UserController {
 			if (dbUser != null) {
 				result.put("access-token", jwtUtil.createToken("id", user.getId()));
 				result.put("message", SUCCESS);
+				dbUser.setPassword("");
+				session.setAttribute("loginUser", dbUser);
+				result.put("loginUser", dbUser);
 				status = HttpStatus.ACCEPTED;
 			} else {
 				result.put("message", FAIL);
@@ -119,8 +122,10 @@ public class UserController {
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping
 	public ResponseEntity<String> updateUserInfo(HttpSession session, @RequestBody User user) {
-		User loginUser = (User) session.getAttribute("loginUser");
-		user.setId(loginUser.getId());
+		
+//		User loginUser = (User) session.getAttribute("loginUser");
+//		System.out.println((User)session.getAttribute("loginUser"));
+//		user.setId(loginUser.getId());
 		int result = us.update(user);
 		if (result == 1) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

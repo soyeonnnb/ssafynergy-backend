@@ -3,6 +3,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeLikeDao">
-
-	
+	<insert id="insert" parameterType="ChallengeLike">
+		INSERT INTO Challenge_Like
+		(User_id, Challenge_id)
+		VALUES
+		(#{UserId}, #{ChallengeId})
+	</insert>
+	<delete id = "delete" parameterType="int">
+		DELETE FROM Challenge_Like
+		WHERE id = #{id}
+	</delete>
+	<select id="search" parameterType="String" resultType="ChallengeLike">
+		SELECT * FROM Challenge_Like WHERE userId = #{userId}
+	</select>
 </mapper>

@@ -3,6 +3,38 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.board.BoardDao">
-
-	
+	<insert id="insert" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Board
+		(title, content, User_id, Board_Category_id)
+		VALUES
+		(#{title}, #{content}, #{userId}, #{boardCategoryId})
+	</insert>
+	<update id="update" parameterType="Board">
+		UPDATE Board
+		SET
+			title = #{title},
+			content = #{content},
+			User_id = #{userId},
+			Board_Category_id = #{boardCategoryId},
+		WHERE id = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM Board
+		WHERE id = #{id}
+	</delete>
+	<select id="search" parameterType="SearchCondition" resultType="Board">
+		SELECT * FROM Board
+		<if test="key != 'none'">
+			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
+		</if>
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+	<select id="select" parameterType="String" resultType="Board">
+		SELECT * FROM Board WHERE User_id=#{userId}
+	</select>
+	<select id="detail" parameterType="int" resultType="Board">
+		SELECT * FROM Board WHERE id=#{id}
+	</select>
 </mapper>

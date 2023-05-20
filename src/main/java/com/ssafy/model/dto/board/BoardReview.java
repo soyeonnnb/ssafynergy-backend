@@ -7,52 +7,65 @@ public class BoardReview {
 	private int boardId;
 	private String userId;
 	private String content;
-	private Date createdAt;
+	private Date createAt;
+	
 	public BoardReview() {
-		// TODO Auto-generated constructor stub
 	}
-	public BoardReview(int id, int boardId, String userId, String content, Date createdAt) {
+
+	public BoardReview(int id, int boardId, String userId, String content, Date createAt) {
 		super();
 		this.id = id;
 		this.boardId = boardId;
 		this.userId = userId;
 		this.content = content;
-		this.createdAt = createdAt;
+		this.createAt = createAt;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getBoardId() {
 		return boardId;
 	}
+
 	public void setBoardId(int boardId) {
 		this.boardId = boardId;
 	}
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getCreatedAt() {
-		return createdAt;
+
+	public Date getCreateAt() {
+		return createAt;
 	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
+
 	@Override
 	public String toString() {
 		return "BoardReview [id=" + id + ", boardId=" + boardId + ", userId=" + userId + ", content=" + content
-				+ ", createdAt=" + createdAt + "]";
+				+ ", createAt=" + createAt + "]";
+
 	}
 	
 }

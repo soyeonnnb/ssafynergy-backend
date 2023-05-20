@@ -1,5 +1,11 @@
 package com.ssafy.model.dao.board;
 
-public interface BoardCategoryDao {
+import java.util.List;
 
+import com.ssafy.model.dto.board.BoardCategory;
+
+public interface BoardCategoryDao {
+	int insert(BoardCategory boardCategory);
+	int update(BoardCategory boardCategory);
+	List<BoardCategory> selectAll();
 }

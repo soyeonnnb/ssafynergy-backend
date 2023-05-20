@@ -1,5 +1,11 @@
 package com.ssafy.model.service.challenge;
 
-public interface ChallengeContentService {
+import com.ssafy.model.dto.challenge.ChallengeContent;
 
+public interface ChallengeContentService {
+	int insert(ChallengeContent challengeContent);
+	
+	int update(ChallengeContent challengeContent);
+	
+	int delete(int id);
 }
