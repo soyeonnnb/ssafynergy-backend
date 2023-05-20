@@ -29,4 +29,9 @@ public class BoardCategoryServiceImpl implements BoardCategoryService{
 		return bd.selectAll();
 	}
 
+	@Override
+	public BoardCategory selectById(int id) {
+		return bd.selectById(id);
+	}
+
 }

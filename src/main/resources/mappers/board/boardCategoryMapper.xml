@@ -7,7 +7,7 @@
 		INSERT INTO Board_Category
 		(name, is_authorized, writer_type, reviewer_type, like_type, is_challenge, Challenge_id)
 		VALUES
-		(#{name}, #{isAuthorized}, #{writerType}, #{reviewerType}, #{likeType}, #{isChallenge}, #{ChallengeId})
+		(#{name}, #{isAuthorized}, #{writerType}, #{reviewerType}, #{likeType}, #{isChallenge}, #{challengeId})
 	</insert>
 	<update id="update" parameterType="BoardCategory">
 		UPDATE Board_Category
@@ -18,10 +18,13 @@
 			reviewer_type = #{reviewerType},
 			like_type = #{likeType},
 			is_challenge = #{isChallenge},
-			Challenge_id = #{ChallengeId},
+			Challenge_id = #{challengeId},
 		WHERE id = #{id}
 	</update>
 	<select id="selectAll" resultType="BoardCategory">
-		SELECT * FROM Board_Category
+		SELECT id, name, is_authorized, writer_type, reviewer_type, like_type, (select count(*) from board where board.board_category_id = board_category.id) as post_num FROM Board_Category
+	</select>
+	<select id="selectById" parameterType="int" resultType="BoardCategory">
+		SELECT id, name, is_authorized, writer_type, reviewer_type, like_type, (select count(*) from board where board.board_category_id = board_category.id) as post_num FROM Board_Category where id=#{id}
 	</select>
 </mapper>
