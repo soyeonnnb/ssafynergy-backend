@@ -72,6 +72,9 @@ public class UserController {
 			if (dbUser != null) {
 				result.put("access-token", jwtUtil.createToken("id", user.getId()));
 				result.put("message", SUCCESS);
+				dbUser.setPassword("");
+				session.setAttribute("loginUser", dbUser);
+				result.put("loginUser", dbUser);
 				status = HttpStatus.ACCEPTED;
 			} else {
 				result.put("message", FAIL);
