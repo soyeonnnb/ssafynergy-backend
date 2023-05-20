@@ -3,7 +3,7 @@ package com.ssafy.model.service.board;
 import java.util.List;
 
 import com.ssafy.model.dto.board.Board;
-import com.ssafy.model.dto.challenge.SearchCondition;
+import com.ssafy.model.dto.board.BoardSearchCondition;
 
 public interface BoardService {
 	int insert(Board board);
@@ -12,7 +12,7 @@ public interface BoardService {
 	
 	int delete(int id);
 	
-	List<Board> search(SearchCondition condition);
+	List<Board> search(BoardSearchCondition condition);
 	
 	List<Board> select(String userId);
 	

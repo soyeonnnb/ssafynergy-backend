@@ -22,7 +22,7 @@
 		DELETE FROM Board
 		WHERE id = #{id}
 	</delete>
-	<select id="search" parameterType="SearchCondition" resultType="Board">
+	<select id="search" parameterType="BoardSearchCondition" resultType="Board">
 		SELECT * FROM Board
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
