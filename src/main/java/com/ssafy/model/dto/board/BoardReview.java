@@ -65,6 +65,7 @@ public class BoardReview {
 	public String toString() {
 		return "BoardReview [id=" + id + ", boardId=" + boardId + ", userId=" + userId + ", content=" + content
 				+ ", createAt=" + createAt + "]";
+
 	}
 	
 }

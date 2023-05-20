@@ -41,6 +41,18 @@ public class User {
 		this.file = file;
 	}
 
+
+
+	public User(String id, String password, String name, String nickname, String email, String socialLogin) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.nickname = nickname;
+		this.email = email;
+		this.socialLogin = socialLogin;
+	}
+
 	public String getId() {
 		return id;
 	}
