@@ -4,13 +4,13 @@
 
 <mapper namespace="com.ssafy.model.dao.board.BoardCategoryDao">
 	<insert id="insert" parameterType="BoardCategory" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO boardCategory
+		INSERT INTO Board_Category
 		(name, is_authorized, writer_type, reviewer_type, like_type, is_challenge, Challenge_id)
 		VALUES
 		(#{name}, #{isAuthorized}, #{writerType}, #{reviewerType}, #{likeType}, #{isChallenge}, #{ChallengeId})
 	</insert>
 	<update id="update" parameterType="BoardCategory">
-		UPDATE boardCategory
+		UPDATE Board_Category
 		SET
 			name = #{name},
 			is_authorized = #{isAuthorized},
@@ -22,6 +22,6 @@
 		WHERE id = #{id}
 	</update>
 	<select id="selectAll" resultType="BoardCategory">
-		SELECT * FROM boardCategory
+		SELECT * FROM Board_Category
 	</select>
 </mapper>

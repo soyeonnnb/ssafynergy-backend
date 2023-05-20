@@ -4,13 +4,13 @@
 
 <mapper namespace="com.ssafy.model.dao.board.BoardDao">
 	<insert id="insert" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO board
+		INSERT INTO Board
 		(title, content, User_id, Board_Category_id)
 		VALUES
 		(#{title}, #{content}, #{userId}, #{boardCategoryId})
 	</insert>
 	<update id="update" parameterType="Board">
-		UPDATE board
+		UPDATE Board
 		SET
 			title = #{title},
 			content = #{content},
@@ -19,11 +19,11 @@
 		WHERE id = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM board
+		DELETE FROM Board
 		WHERE id = #{id}
 	</delete>
 	<select id="search" parameterType="SearchCondition" resultType="Board">
-		SELECT * FROM board
+		SELECT * FROM Board
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
 		</if>
@@ -32,9 +32,9 @@
 		</if>
 	</select>
 	<select id="select" parameterType="String" resultType="Board">
-		SELECT * FROM board WHERE User_id=#{userId}
+		SELECT * FROM Board WHERE User_id=#{userId}
 	</select>
 	<select id="detail" parameterType="int" resultType="Board">
-		SELECT * FROM board WHERE id=#{id}
+		SELECT * FROM Board WHERE id=#{id}
 	</select>
 </mapper>
