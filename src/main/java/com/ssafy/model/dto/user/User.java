@@ -13,6 +13,9 @@ public class User {
 	private String email;
 	private String type;
 	private String img;
+	private Date birth;
+	private String gender;
+	private String comment;
 	private String socialLogin;
 	private MultipartFile file;
 
@@ -21,7 +24,7 @@ public class User {
 	}
 
 	public User(String id, String password, String name, String nickname, Date registDate, String email, String type,
-			String img, String socialLogin, MultipartFile file) {
+			String img, Date birth, String gender, String comment, String socialLogin, MultipartFile file) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -31,6 +34,9 @@ public class User {
 		this.email = email;
 		this.type = type;
 		this.img = img;
+		this.birth = birth;
+		this.gender = gender;
+		this.comment = comment;
 		this.socialLogin = socialLogin;
 		this.file = file;
 	}
@@ -115,11 +121,35 @@ public class User {
 		this.file = file;
 	}
 
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname
-				+ ", registDa te=" + registDate + ", email=" + email + ", type=" + type + ", img=" + img
-				+ ", socialLogin=" + socialLogin + "]";
+				+ ", registDate=" + registDate + ", email=" + email + ", type=" + type + ", img=" + img + ", birth="
+				+ birth + ", gender=" + gender + ", socialLogin=" + socialLogin + ", file=" + file + "]";
 	}
 
 }

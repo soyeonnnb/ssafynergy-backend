@@ -122,8 +122,10 @@ public class UserController {
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping
 	public ResponseEntity<String> updateUserInfo(HttpSession session, @RequestBody User user) {
-		User loginUser = (User) session.getAttribute("loginUser");
-		user.setId(loginUser.getId());
+		
+//		User loginUser = (User) session.getAttribute("loginUser");
+//		System.out.println((User)session.getAttribute("loginUser"));
+//		user.setId(loginUser.getId());
 		int result = us.update(user);
 		if (result == 1) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

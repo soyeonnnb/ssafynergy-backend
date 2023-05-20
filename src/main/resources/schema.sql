@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`User` (
   `type` VARCHAR(10) NOT NULL DEFAULT 'N',
   `img` VARCHAR(200) NULL,
   `socialLogin` VARCHAR(5) NOT NULL,
+  `gender` VARCHAR(5),
+  `birth` DATE,
+  `comment` VARCHAR(200),
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
@@ -34,11 +37,11 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`User` (
 ENGINE = InnoDB;
 
 INSERT INTO user 
-VALUES('admin', 'admin', 'admin', 'admin', now(), 'admin@ssafy.com', 'A', null, 'F'),
-('ssafy1', 'ssafy1', 'ssafy1', 'ssafy1', now(), 'ssafy1@ssafy.com', 'N', null, 'F'),
-('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2', now(), 'ssafy2@ssafy.com', 'N', null, 'F'),
-('junghun', 'junghun', 'junghun', 'junghun', now(), 'junghun@ssafy.com', 'N', null, 'F'),
-('soyeon', 'soyeon', 'soyeon', 'soyeon', now(), 'soyeon@ssafy.com', 'N', null, 'F');
+VALUES('admin', 'admin', 'admin', 'admin', now(), 'admin@ssafy.com', 'A', null, 'F', 'M', '2023-03-03'),
+('ssafy1', 'ssafy1', 'ssafy1', 'ssafy1', now(), 'ssafy1@ssafy.com', 'N', null, 'F', 'F', '2023-03-13'),
+('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2', now(), 'ssafy2@ssafy.com', 'N', null, 'F', 'M', '2023-03-23'),
+('junghun', 'junghun', 'junghun', 'junghun', now(), 'junghun@ssafy.com', 'N', null, 'F', 'F', '2023-04-03'),
+('soyeon', 'soyeon', 'soyeon', 'soyeon', now(), 'soyeon@ssafy.com', 'N', null, 'F', 'M', '2023-03-04');
 
 
 -- -----------------------------------------------------
