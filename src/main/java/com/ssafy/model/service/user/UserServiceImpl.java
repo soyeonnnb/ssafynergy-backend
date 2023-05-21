@@ -72,4 +72,9 @@ public class UserServiceImpl implements UserService {
 		return ud.selectByIdAndPassword(user);
 	}
 
+	@Override
+	public User selectByEmail(String email) {
+		return ud.selectByEmail(email);
+	}
+
 }
