@@ -6,7 +6,7 @@ public class Challenge {
 	private int id;
 	private String name;
 	private Date createdAt;
-	private Date startedAt;
+	private Date startAt;
 	private Date finishAt;
 	private String description;
 	private int limitPersonNum;
@@ -18,13 +18,13 @@ public class Challenge {
 	public Challenge() {
 	}
 
-	public Challenge(int id, String name, Date createdAt, Date startedAt, Date finishAt, String description,
+	public Challenge(int id, String name, Date createdAt, Date startAt, Date finishAt, String description,
 			int limitPersonNum, boolean publicType, int challengeDifficultyId, int opportunity, boolean isGiveup) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.createdAt = createdAt;
-		this.startedAt = startedAt;
+		this.startAt = startAt;
 		this.finishAt = finishAt;
 		this.description = description;
 		this.limitPersonNum = limitPersonNum;
@@ -58,12 +58,12 @@ public class Challenge {
 		this.createdAt = createdAt;
 	}
 
-	public Date getStartedAt() {
-		return startedAt;
+	public Date getStartAt() {
+		return startAt;
 	}
 
-	public void setStartedAt(Date startedAt) {
-		this.startedAt = startedAt;
+	public void setStartAt(Date startAt) {
+		this.startAt = startAt;
 	}
 
 	public Date getFinishAt() {
@@ -124,7 +124,7 @@ public class Challenge {
 
 	@Override
 	public String toString() {
-		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startedAt=" + startedAt
+		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
 				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
 				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
 				+ opportunity + ", isGiveup=" + isGiveup + "]";

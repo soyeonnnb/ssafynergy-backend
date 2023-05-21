@@ -37,11 +37,11 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`User` (
 ENGINE = InnoDB;
 
 INSERT INTO user 
-VALUES('admin', 'admin', 'admin', 'admin', now(), 'admin@ssafy.com', 'A', null, 'F', 'M', '2023-03-03'),
-('ssafy1', 'ssafy1', 'ssafy1', 'ssafy1', now(), 'ssafy1@ssafy.com', 'N', null, 'F', 'F', '2023-03-13'),
-('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2', now(), 'ssafy2@ssafy.com', 'N', null, 'F', 'M', '2023-03-23'),
-('junghun', 'junghun', 'junghun', 'junghun', now(), 'junghun@ssafy.com', 'N', null, 'F', 'F', '2023-04-03'),
-('soyeon', 'soyeon', 'soyeon', 'soyeon', now(), 'soyeon@ssafy.com', 'N', null, 'F', 'M', '2023-03-04');
+VALUES('admin', 'admin', 'admin', 'admin', now(), 'admin@ssafy.com', 'A', null, 'F', 'M', '2023-03-03', '관리자입니다.'),
+('ssafy1', 'ssafy1', 'ssafy1', 'ssafy1', now(), 'ssafy1@ssafy.com', 'N', null, 'F', 'F', '2023-03-13', 'ssafy1입니다'),
+('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2', now(), 'ssafy2@ssafy.com', 'N', null, 'F', 'M', '2023-03-23', 'ssafy2입니다'),
+('junghun', 'junghun', 'junghun', 'junghun', now(), 'junghun@ssafy.com', 'N', null, 'F', 'F', '2023-04-03', 'junghun입니다'),
+('soyeon', 'soyeon', 'soyeon', 'soyeon', now(), 'soyeon@ssafy.com', 'N', null, 'F', 'M', '2023-03-04', 'soyeon입니다');
 
 
 -- -----------------------------------------------------
