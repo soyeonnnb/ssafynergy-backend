@@ -39,4 +39,5 @@ public class BoardCategoryServiceImpl implements BoardCategoryService{
 		return bd.selectWriterTypeIsTrue();
 	}
 
+
 }

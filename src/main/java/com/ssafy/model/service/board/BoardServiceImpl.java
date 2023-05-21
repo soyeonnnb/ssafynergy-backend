@@ -45,4 +45,9 @@ public class BoardServiceImpl implements BoardService{
 		return bd.detail(id);
 	}
 
+	@Override
+	public int viewCntUp(int id) {
+		return bd.viewCntPlus(id);
+	}
+
 }

@@ -9,6 +9,7 @@ public class Board {
 	private Date createdAt;
 	private String userId;
 	private int boardCategoryId;
+	private String boardCategoryName;
 	private int viewCnt;
 	private int likeCnt;
 	private int reviewCnt;
@@ -28,6 +29,14 @@ public class Board {
 		this.userId = userId;
 		this.boardCategoryId = boardCategoryId;
 		this.viewCnt = viewCnt;
+	}
+
+	public String getBoardCategoryName() {
+		return boardCategoryName;
+	}
+
+	public void setBoardCategoryName(String boardCategoryName) {
+		this.boardCategoryName = boardCategoryName;
 	}
 
 	public int getReviewCnt() {
@@ -112,9 +121,10 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [id=" + id + ", title=" + title + ", content=" + content + ", created_at=" + createdAt
-				+ ", userId=" + userId + ", boardCategoryId=" + boardCategoryId + ", viewCnt=" + viewCnt + "]";
-
+		return "Board [id=" + id + ", title=" + title + ", content=" + content + ", createdAt=" + createdAt
+				+ ", userId=" + userId + ", boardCategoryId=" + boardCategoryId + ", boardCategoryName="
+				+ boardCategoryName + ", viewCnt=" + viewCnt + ", likeCnt=" + likeCnt + ", reviewCnt=" + reviewCnt
+				+ ", userNickname=" + userNickname + "]";
 	}
 
 }

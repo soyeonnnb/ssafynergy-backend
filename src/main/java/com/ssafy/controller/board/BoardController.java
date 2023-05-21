@@ -47,13 +47,18 @@ public class BoardController {
 		bs.delete(id);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
+	
+	@PutMapping("/post/{id}")
+	@ApiOperation(value="게시글의 조회수를 증가시킨다.")
+	public ResponseEntity<Void> viewCntUp(@PathVariable int id){
+		bs.viewCntUp(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@GetMapping("/search")
 	@ApiOperation(value = "게시글에서 옵션을 선택하여 검색한다.")
 	public ResponseEntity<?> search(BoardSearchCondition searchCondition) {
-		System.out.println(searchCondition);
 		List<Board> list = bs.search(searchCondition);
-		System.out.println(list);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
@@ -61,7 +66,7 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/post/{userId}")
+	@GetMapping("/post/user/{userId}")
 	@ApiOperation(value = "유저{userId}가 작성한 글을 조회한다.")
 	public ResponseEntity<?> select(@PathVariable String userId) {
 		List<Board> list = bs.select(userId);
@@ -77,7 +82,7 @@ public class BoardController {
 	public ResponseEntity<Board> detail(@PathVariable int id) {
 		Board board = bs.detail(id);
 		if (board == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<Board>(board, HttpStatus.OK);
 		}

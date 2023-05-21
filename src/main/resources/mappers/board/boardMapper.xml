@@ -3,51 +3,60 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.board.BoardDao">
-	<insert id="insert" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
+	<insert id="insert" parameterType="Board" keyProperty="id"
+		useGeneratedKeys="true">
 		INSERT INTO Board
-		(title, content, User_id, Board_Category_id, created_at)
+		(title, content, User_id,
+		Board_Category_id, created_at)
 		VALUES
-		(#{title}, #{content}, #{userId}, #{boardCategoryId}, now())
+		(#{title}, #{content}, #{userId},
+		#{boardCategoryId}, now())
 	</insert>
 	<update id="update" parameterType="Board">
 		UPDATE Board
 		SET
-			title = #{title},
-			content = #{content},
-			User_id = #{userId},
-			Board_Category_id = #{boardCategoryId},
+		title = #{title},
+		content = #{content},
+		User_id = #{userId},
+		Board_Category_id = #{boardCategoryId},
 		WHERE id = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
 		DELETE FROM Board
-		WHERE id = #{id}
+		WHERE id =
+		#{id}
 	</delete>
-	<select id="search" parameterType="BoardSearchCondition" resultType="Board">
-		SELECT 
-		id, 
-		title, 
-		content, 
-		created_at, 
-		user_id, 
-		board_category_id, 
-		view_cnt, 
-		(select count(*) from board_like where board_id = board.id) as likeCnt, 
-		(select count(*) from board_review where board_id = board.id) as reviewCnt, 
+	<select id="search" parameterType="BoardSearchCondition"
+		resultType="Board">
+		SELECT
+		id,
+		title,
+		content,
+		created_at,
+		user_id,
+		board_category_id,
+		view_cnt,
+		(select name from board_category where id=board.board_category_id) as
+		boardCategoryName,
+		(select count(*) from board_like where board_id =
+		board.id) as likeCnt,
+		(select count(*) from board_review where board_id = board.id) as reviewCnt,
 		(select nickname from user where id = board.user_id) as userNickname
-		
+
 		FROM Board
 		<if test="key != 'none' or hasUserId or hasBoardCategoryId">WHERE </if>
 		<if test="key != 'none' ">
 			${key} LIKE CONCAT('%', #{word}, '%')
 		</if>
 		<if test="key != 'none' and hasUserId">
-			and 
+			and
 		</if>
 		<if test="hasUserId">
 			user_id = #{userId}
 		</if>
-		<if test="(key != 'none' and !hasUserId) or (hasUserId and hasBoardCategoryId)">
-			and 
+		<if
+			test="(key != 'none' and !hasUserId) or (hasUserId and hasBoardCategoryId)">
+			and
 		</if>
 		<if test="hasBoardCategoryId">
 			board_category_id = #{boardCategoryId}
@@ -57,9 +66,28 @@
 		</if>
 	</select>
 	<select id="select" parameterType="String" resultType="Board">
-		SELECT * FROM Board WHERE User_id=#{userId}
+		SELECT *
+		FROM Board WHERE User_id=#{userId}
 	</select>
 	<select id="detail" parameterType="int" resultType="Board">
-		SELECT * FROM Board WHERE id=#{id}
+		SELECT
+		id,
+		title,
+		content,
+		created_at,
+		user_id,
+		board_category_id,
+		view_cnt,
+		(select name from board_category where id=board.board_category_id) as
+		boardCategoryName,
+		(select count(*) from board_like where board_id =
+		board.id) as likeCnt,
+		(select count(*) from board_review where board_id = board.id) as reviewCnt,
+		(select nickname from user where id = board.user_id) as userNickname
+		FROM Board WHERE id=#{id}
 	</select>
+	<update id="viewCntPlus" parameterType="int">
+		UPDATE board SET view_cnt
+		= view_cnt + 1 where id = #{id}
+	</update>
 </mapper>

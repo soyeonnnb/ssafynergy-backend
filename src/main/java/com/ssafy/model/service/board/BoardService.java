@@ -10,6 +10,8 @@ public interface BoardService {
 	
 	int update(Board board);
 	
+	int viewCntUp(int id);
+	
 	int delete(int id);
 	
 	List<Board> search(BoardSearchCondition condition);
