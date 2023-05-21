@@ -8,5 +8,7 @@ public interface BoardCategoryDao {
 	int insert(BoardCategory boardCategory);
 	int update(BoardCategory boardCategory);
 	List<BoardCategory> selectAll();
+	List<BoardCategory> selectWriterTypeIsTrue();
 	BoardCategory selectById(int id);
+
 }

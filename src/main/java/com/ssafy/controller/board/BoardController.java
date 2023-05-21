@@ -26,9 +26,10 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 
-	@PostMapping("/post")
+	@PostMapping("/post") // 여기서 post는 http methods의 post가 아니라 게시글의 post이다
 	@ApiOperation(value = "게시글을 등록한다.")
 	public ResponseEntity<?> insert(@RequestBody Board board) {
+		System.out.println(board);
 		bs.insert(board);
 		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
@@ -49,20 +50,10 @@ public class BoardController {
 
 	@GetMapping("/search")
 	@ApiOperation(value = "게시글에서 옵션을 선택하여 검색한다.")
-	public ResponseEntity<?> search(@RequestBody BoardSearchCondition searchcondition) {
-		BoardSearchCondition bsc = new BoardSearchCondition();
-		if (searchcondition.getTitle() != null)
-			bsc.setTitle(searchcondition.getTitle());
-		if (searchcondition.getUserId() != null)
-			bsc.setUserId(searchcondition.getUserId());
-		if (searchcondition.getBoardCategoryId() != -1)
-			bsc.setBoardCategoryId(searchcondition.getBoardCategoryId());
-		if (searchcondition.getOrderBy() != null) {
-			bsc.setOrderBy(searchcondition.getOrderBy());
-			bsc.setOrderByDir(searchcondition.getOrderByDir());
-		}
-
-		List<Board> list = bs.search(bsc);
+	public ResponseEntity<?> search(BoardSearchCondition searchCondition) {
+		System.out.println(searchCondition);
+		List<Board> list = bs.search(searchCondition);
+		System.out.println(list);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
