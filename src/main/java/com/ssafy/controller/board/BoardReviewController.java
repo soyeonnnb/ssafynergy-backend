@@ -49,7 +49,7 @@ public class BoardReviewController {
 	}
 
 	@GetMapping("/{boardId}")
-	@ApiOperation(value = "게시글{boardId}에 대한 댓글을 조회한다.")
+	@ApiOperation(value = "게시글 {boardId}에 대한 댓글을 조회한다.")
 	public ResponseEntity<?> selectBoard(@PathVariable int boardId) {
 		List<BoardReview> list = bs.selectBoard(boardId);
 		if (list.size() == 0) {
