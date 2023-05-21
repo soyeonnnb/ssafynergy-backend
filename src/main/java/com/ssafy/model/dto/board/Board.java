@@ -14,6 +14,15 @@ public class Board {
 	private int likeCnt;
 	private int reviewCnt;
 	private String userNickname;
+	private boolean isLike;
+
+	public boolean getIsLike() {
+		return isLike;
+	}
+
+	public void setIsLike(boolean isLike) {
+		this.isLike = isLike;
+	}
 
 	public Board() {
 		// TODO Auto-generated constructor stub

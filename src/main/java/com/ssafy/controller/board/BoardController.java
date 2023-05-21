@@ -2,6 +2,8 @@ package com.ssafy.controller.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.model.dto.board.Board;
+import com.ssafy.model.dto.board.BoardLike;
 import com.ssafy.model.dto.board.BoardSearchCondition;
+import com.ssafy.model.service.board.BoardLikeService;
 import com.ssafy.model.service.board.BoardService;
 
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +29,9 @@ import io.swagger.annotations.ApiOperation;
 public class BoardController {
 	@Autowired
 	private BoardService bs;
+	
+	@Autowired
+	private BoardLikeService boardLikeService;
 
 	@PostMapping("/post") // 여기서 post는 http methods의 post가 아니라 게시글의 post이다
 	@ApiOperation(value = "게시글을 등록한다.")
@@ -78,11 +85,16 @@ public class BoardController {
 
 	@GetMapping("/post/{id}")
 	@ApiOperation(value = "게시글의 상세정보를 조회한다.")
-	public ResponseEntity<Board> detail(@PathVariable int id) {
+	public ResponseEntity<Board> detail(HttpSession session, @PathVariable int id) {
 		Board board = bs.detail(id);
 		if (board == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
+			if(boardLikeService.isLike(new BoardLike("admin",  id))) {
+				board.setIsLike(true);
+			} else {
+				board.setIsLike(false);
+			}
 			return new ResponseEntity<Board>(board, HttpStatus.OK);
 		}
 	}
