@@ -29,7 +29,6 @@ public class BoardController {
 	@PostMapping("/post") // 여기서 post는 http methods의 post가 아니라 게시글의 post이다
 	@ApiOperation(value = "게시글을 등록한다.")
 	public ResponseEntity<?> insert(@RequestBody Board board) {
-		System.out.println(board);
 		bs.insert(board);
 		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
