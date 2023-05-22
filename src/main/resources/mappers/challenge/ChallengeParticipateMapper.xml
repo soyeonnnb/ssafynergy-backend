@@ -5,21 +5,24 @@
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeParticipateDao">
 	<insert id="insert" parameterType="ChallengeParticipate" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Challenge_participate
-		(User_id, Challenge_id)
+		(User_id, Challenge_id, participated_date)
 		VALUES
-		(#{UserId}, #{ChallengeId})
+		(#{userId}, #{challengeId}, now())
 	</insert>
 	<delete id = "delete" parameterType="int">
 		DELETE FROM Challenge_participate
-		WHERE User_id = #{UserId} and Challenge_id = #{ChallengeId}
+		WHERE User_id = #{userId} and Challenge_id = #{challengeId}
 	</delete>
 	<update id="update" parameterType="ChallengeParticipate">
 		UPDATE Challenge
 		SET 
-			is_giveup = #{isGiveup}
-		WHERE User_id = #{UserId} and Challenge_id = #{ChallengeId}
+			is_giveup = true
+		WHERE User_id = #{userId} and Challenge_id = #{challengeId}
 	</update>
 	<select id="select" parameterType="String" resultType="ChallengeParticipate">
 		SELECT * FROM Challenge_participate WHERE user_id=#{userId}
+	</select>
+	<select id="isParticipated" parameterType="ChallengeParticipate" resultType="ChallengeParticipate">
+		SELECT * FROM Challenge_participate WHERE user_id = #{userId} and challenge_id = #{challengeId}
 	</select>
 </mapper>

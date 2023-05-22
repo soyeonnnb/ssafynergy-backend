@@ -13,5 +13,7 @@ public interface ChallengeParticipateService {
 	
 	List<ChallengeParticipate> search(String userId);
 	
+	boolean isParticipate(ChallengeParticipate challengeParticipate);
+	
 	List<ChallengeParticipate> getParticipatedPersonNum(int challengeId);
 }

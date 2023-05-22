@@ -7,7 +7,7 @@
 		INSERT INTO Challenge_ing
 		(Challenge_participate_id, index, content, check, img)
 		VALUES
-		(#{ChallengeParticipateId}, #{index}, #{content}, #{check}, #{img})
+		(#{challengeParticipateId}, #{index}, #{content}, #{check}, #{img})
 	</insert>
 	<update id="update" parameterType="ChallengeIng">
 		UPDATE Challenge_ing

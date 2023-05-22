@@ -7,15 +7,15 @@
 		INSERT INTO Review
 		(title, content, Challenge_id, User_id, rating)
 		VALUES
-		(#{title}, #{content}, #{ChallengeId}, #{UserId}, #{rating})
+		(#{title}, #{content}, #{challengeId}, #{userId}, #{rating})
 	</insert>
 	<update id="update" parameterType="Review">
 		UPDATE Review
 		SET 
 			title = #{title},
 			content = #{content},
-			Challenge_id = #{ChallengeId},
-			User_id = #{UserId}
+			Challenge_id = #{challengeId},
+			User_id = #{userId}
 			rating = #{rating}
 		WHERE id = #{id}
 	</update>

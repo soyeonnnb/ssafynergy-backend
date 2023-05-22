@@ -7,7 +7,7 @@
 		INSERT INTO Challenge_Like
 		(User_id, Challenge_id)
 		VALUES
-		(#{UserId}, #{ChallengeId})
+		(#{userId}, #{challengeId})
 	</insert>
 	<delete id = "delete" parameterType="int">
 		DELETE FROM Challenge_Like

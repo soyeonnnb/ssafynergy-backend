@@ -39,4 +39,10 @@ public class ChallengeParticipateServiceImpl implements ChallengeParticipateServ
 		return cd.getParticipatedPersonNum(challengeId);
 	}
 
+	@Override
+	public boolean isParticipate(ChallengeParticipate challengeParticipate) {
+		if (cd.isParticipated(challengeParticipate)!= null) return true;
+		else return false;
+	}
+
 }

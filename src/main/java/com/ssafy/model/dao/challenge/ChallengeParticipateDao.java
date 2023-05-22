@@ -10,4 +10,5 @@ public interface ChallengeParticipateDao {
 	int update(ChallengeParticipate challengeParticipate);
 	List<ChallengeParticipate> search(String userId);
 	List<ChallengeParticipate> getParticipatedPersonNum(int challengeId);
+	ChallengeParticipate isParticipated(ChallengeParticipate challengeParticipate);
 }
