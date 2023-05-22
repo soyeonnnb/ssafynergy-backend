@@ -16,13 +16,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.model.dto.board.Board;
 import com.ssafy.model.dto.user.User;
 import com.ssafy.model.service.user.UserService;
 import com.ssafy.util.JwtUtil;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -73,6 +79,7 @@ public class UserController {
 				result.put("access-token", jwtUtil.createToken("id", user.getId()));
 				result.put("message", SUCCESS);
 				dbUser.setPassword("");
+				System.out.println((User) session.getAttribute("loginUser"));
 				session.setAttribute("loginUser", dbUser);
 				result.put("loginUser", dbUser);
 				status = HttpStatus.ACCEPTED;
@@ -86,13 +93,6 @@ public class UserController {
 		}
 		return new ResponseEntity<Map<String, Object>>(result, status);
 
-//		User dbUser = us.selectById(user.getId());
-//		if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
-//			session.setAttribute("loginUser", dbUser);
-//			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
-//		}
 	}
 
 //	@ApiOperation(value = "비밀번호 재설정")
@@ -104,6 +104,7 @@ public class UserController {
 	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
 	public ResponseEntity<?> logout(HttpSession session) {
+		System.out.println((User) session.getAttribute("loginUser"));
 		session.removeAttribute("loginUser");
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.ACCEPTED);
 	}
@@ -121,29 +122,37 @@ public class UserController {
 
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping
-	public ResponseEntity<String> updateUserInfo(HttpSession session, @RequestBody User user) {
-		
-//		User loginUser = (User) session.getAttribute("loginUser");
-//		System.out.println((User)session.getAttribute("loginUser"));
-//		user.setId(loginUser.getId());
-		int result = us.update(user);
-		if (result == 1) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+	public ResponseEntity<?> updateUserInfo(@RequestHeader("access-token") String token, @RequestBody User user) {
+		try {
+			String userId = (String) jwtUtil.parseToken(token).get("id");
+			user.setId(userId);
+			int result = us.update(user);
+			if (result == 1) {
+				return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+			}
+		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
+				| IllegalArgumentException | UnsupportedEncodingException e) {
+			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
 		}
+		
 	}
 
 	@ApiOperation(value = "회원탈퇴")
 	@DeleteMapping
-	public ResponseEntity<?> withdrawal(HttpSession session) {
-		User loginUser = (User) session.getAttribute("loginUser");
-		int result = us.withdrawal(loginUser.getId());
-		if (result == 1) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.ACCEPTED);
-		} else {
-			return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<?> withdrawal(@RequestHeader("access-token") String token) {
+		try {
+			String userId = (String) jwtUtil.parseToken(token).get("id");
+			int result = us.withdrawal(userId);
+			if (result == 1) {
+				return new ResponseEntity<String>(SUCCESS, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+			}
+		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
+				| IllegalArgumentException | UnsupportedEncodingException e) {
+			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
+		}	
 	}
-
 }
