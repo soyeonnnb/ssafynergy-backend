@@ -5,7 +5,7 @@
 <mapper namespace="com.ssafy.model.dao.board.BoardLikeDao">
 	<insert id="insert" parameterType="BoardLike" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_Like
-		(User_id, Board_id)
+		(user_id, Board_id)
 		VALUES
 		(#{userId}, #{boardId})
 	</insert>
