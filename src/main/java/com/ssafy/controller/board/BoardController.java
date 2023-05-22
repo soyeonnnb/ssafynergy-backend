@@ -105,7 +105,6 @@ public class BoardController {
 	@GetMapping("/search")
 	@ApiOperation(value = "게시글에서 옵션을 선택하여 검색한다.")
 	public ResponseEntity<?> search(BoardSearchCondition searchCondition) {
-		System.out.println(searchCondition);
 		List<Board> list = bs.search(searchCondition);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

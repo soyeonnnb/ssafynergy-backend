@@ -1,8 +1,7 @@
 package com.ssafy.controller.challenge;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.model.dto.challenge.ChallengeParticipate;
 import com.ssafy.model.service.challenge.ChallengeParticipateService;
+import com.ssafy.util.JwtUtil;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -26,12 +31,23 @@ import io.swagger.annotations.ApiOperation;
 public class ChallengeParticipateController {
 	@Autowired
 	private ChallengeParticipateService cs;
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	@PostMapping("")
 	@ApiOperation(value = "챌린지 신청을 한다")
-	public ResponseEntity<?> insert(@RequestBody ChallengeParticipate challengeParticipate) {
-		cs.insert(challengeParticipate);
-		return new ResponseEntity<ChallengeParticipate>(challengeParticipate, HttpStatus.OK);
+	public ResponseEntity<?> insert(@RequestHeader("access-token") String token, @RequestBody ChallengeParticipate challengeParticipate) {
+		try {
+			String userId = (String) jwtUtil.parseToken(token).get("id");
+			challengeParticipate.setUserId(userId);
+			cs.insert(challengeParticipate);
+			return new ResponseEntity<ChallengeParticipate>(challengeParticipate, HttpStatus.OK);
+		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
+				| IllegalArgumentException | UnsupportedEncodingException e) {
+			return new ResponseEntity<>("FAIL", HttpStatus.BAD_GATEWAY);
+		}
+		
+		
 	}
 
 	@DeleteMapping("/{id}")
