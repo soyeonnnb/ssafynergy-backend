@@ -30,7 +30,6 @@ public class ChallengeController {
 	@PostMapping("")
 	@ApiOperation(value = "챌린지를 추가한다.")
 	public ResponseEntity<?> insert(@RequestBody Challenge challenge){
-		System.out.println("test3");
 		cs.insert(challenge);
 		return new ResponseEntity<Challenge>(challenge, HttpStatus.OK);
 	}
@@ -38,7 +37,6 @@ public class ChallengeController {
 	@PutMapping("")
 	@ApiOperation(value = "챌린지를 수정한다.")
 	public ResponseEntity<String> update(@RequestBody Challenge challenge){
-		System.out.println("test2");
 		cs.update(challenge);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
