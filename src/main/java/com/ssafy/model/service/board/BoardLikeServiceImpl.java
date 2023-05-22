@@ -22,4 +22,9 @@ public class BoardLikeServiceImpl implements BoardLikeService{
 		return bd.delete(boardLike);
 	}
 
+	@Override
+	public boolean isLike(BoardLike boardLike) {
+		return bd.search(boardLike) == 1;
+	}
+
 }

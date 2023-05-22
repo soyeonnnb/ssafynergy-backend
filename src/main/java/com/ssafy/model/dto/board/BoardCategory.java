@@ -9,7 +9,7 @@ public class BoardCategory {
 	private boolean likeType;
 	private boolean isChallenge;
 	private int challengeId;
-	
+	private int postNum;
 	public BoardCategory() {
 	}
 
@@ -25,6 +25,8 @@ public class BoardCategory {
 		this.isChallenge = isChallenge;
 		this.challengeId = challengeId;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -42,15 +44,15 @@ public class BoardCategory {
 		this.name = name;
 	}
 
-	public boolean isAuthorized() {
+	public boolean getIsAuthorized() {
 		return isAuthorized;
 	}
 
-	public void setAuthorized(boolean isAuthorized) {
+	public void setIsAuthorized(boolean isAuthorized) {
 		this.isAuthorized = isAuthorized;
 	}
 
-	public boolean isWriterType() {
+	public boolean getWriterType() {
 		return writerType;
 	}
 
@@ -58,7 +60,7 @@ public class BoardCategory {
 		this.writerType = writerType;
 	}
 
-	public boolean isReviewerType() {
+	public boolean getReviewerType() {
 		return reviewerType;
 	}
 
@@ -66,7 +68,7 @@ public class BoardCategory {
 		this.reviewerType = reviewerType;
 	}
 
-	public boolean isLikeType() {
+	public boolean getLikeType() {
 		return likeType;
 	}
 
@@ -74,11 +76,11 @@ public class BoardCategory {
 		this.likeType = likeType;
 	}
 
-	public boolean isChallenge() {
+	public boolean getIsChallenge() {
 		return isChallenge;
 	}
 
-	public void setChallenge(boolean isChallenge) {
+	public void setIsChallenge(boolean isChallenge) {
 		this.isChallenge = isChallenge;
 	}
 
@@ -88,6 +90,14 @@ public class BoardCategory {
 
 	public void setChallengeId(int challengeId) {
 		this.challengeId = challengeId;
+	}
+
+	public int getPostNum() {
+		return postNum;
+	}
+
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
 	@Override

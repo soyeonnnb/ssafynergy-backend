@@ -29,4 +29,15 @@ public class BoardCategoryServiceImpl implements BoardCategoryService{
 		return bd.selectAll();
 	}
 
+	@Override
+	public BoardCategory selectById(int id) {
+		return bd.selectById(id);
+	}
+
+	@Override
+	public List<BoardCategory> selectForUser() {
+		return bd.selectWriterTypeIsTrue();
+	}
+
+
 }

@@ -41,9 +41,8 @@ public class User {
 		this.file = file;
 	}
 
-
-
-	public User(String id, String password, String name, String nickname, String email, String socialLogin) {
+	public User(String id, String password, String name, String nickname, String email, String socialLogin,
+			String type) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -51,6 +50,7 @@ public class User {
 		this.nickname = nickname;
 		this.email = email;
 		this.socialLogin = socialLogin;
+		this.type = type;
 	}
 
 	public String getId() {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.model.dao.board.BoardDao;
 import com.ssafy.model.dto.board.Board;
-import com.ssafy.model.dto.challenge.SearchCondition;
+import com.ssafy.model.dto.board.BoardSearchCondition;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -31,7 +31,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<Board> search(SearchCondition condition) {
+	public List<Board> search(BoardSearchCondition condition) {
 		return bd.search(condition);
 	}
 
@@ -43,6 +43,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Board detail(int id) {
 		return bd.detail(id);
+	}
+
+	@Override
+	public int viewCntUp(int id) {
+		return bd.viewCntPlus(id);
 	}
 
 }

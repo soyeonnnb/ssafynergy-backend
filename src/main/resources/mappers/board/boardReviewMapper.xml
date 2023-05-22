@@ -5,16 +5,14 @@
 <mapper namespace="com.ssafy.model.dao.board.BoardReviewDao">
 	<insert id="insert" parameterType="BoardReview" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_Review
-		(Board_id, User_id, content)
+		(Board_id, User_id, content, created_at)
 		VALUES
-		(#{boardId}, #{userId}, #{content})
+		(#{boardId}, #{userId}, #{content}, now())
 	</insert>
 	<update id="update" parameterType="BoardReview">
 		UPDATE Board_Review
 		SET
-			Board_id = #{boardId},
-			User_id = #{userId},
-			content = #{content},
+			content = #{content}
 		WHERE id = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
@@ -22,7 +20,7 @@
 		WHERE id = #{id}
 	</delete>
 	<select id="selectBoard" parameterType="int" resultType="BoardReview">
-		SELECT * FROM Board_Review WHERE Board_id=#{boardId}
+		SELECT id, board_id, user_id, content, created_at, (select nickname from user where id=board_review.user_id) as userNickname FROM Board_Review WHERE Board_id=#{boardId}
 	</select>
 	<select id="selectUser" parameterType="String" resultType="BoardReview">
 		SELECT * FROM Board_Review WHERE User_id=#{userId}

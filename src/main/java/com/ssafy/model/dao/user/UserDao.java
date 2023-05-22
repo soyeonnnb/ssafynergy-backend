@@ -10,6 +10,8 @@ public interface UserDao {
 	User selectByNickname(String nickname);
 	
 	User selectByIdAndPassword(User user);
+	
+	User selectByEmail(String email);
 
 	int update(User user);
 
