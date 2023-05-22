@@ -54,7 +54,12 @@ public class BoardCategoryController {
 	@ApiOperation(value = "전체 카테고리 목록을 조회한다.")
 	public ResponseEntity<?> selectAll(){
 		List<BoardCategory> list = bs.selectAll();
-		
+		return new ResponseEntity<List<BoardCategory>>(list, HttpStatus.OK);
+	}
+	@GetMapping("/foruser")
+	@ApiOperation(value = "일반 유저가 작성 가능한 카테고리 목록을 조회한다.")
+	public ResponseEntity<?> selectForUser(){
+		List<BoardCategory> list = bs.selectForUser();
 		return new ResponseEntity<List<BoardCategory>>(list, HttpStatus.OK);
 	}
 	

@@ -17,6 +17,11 @@ public class BoardLike {
 		this.createdAt = createdAt;
 	}
 
+	public BoardLike(String userId, int boardId) {
+		super();
+		this.userId = userId;
+		this.boardId = boardId;
+	} 
 	public String getUserId() {
 		return userId;
 	}
