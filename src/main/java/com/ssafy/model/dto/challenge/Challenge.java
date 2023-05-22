@@ -10,8 +10,8 @@ public class Challenge {
 	private Date finishAt;
 	private String description;
 	private int limitPersonNum;
-	private boolean publicType;
-	private int challengeDifficultyId;
+	private boolean publicType;         // 신청가능 여부인듯
+	private int challengeDifficultyId;  // 인트로 줬네.... 일단 쉬움1 보통2 어려움3 
 	private int opportunity;
 	private boolean isGiveup;
 	private int participateCnt;

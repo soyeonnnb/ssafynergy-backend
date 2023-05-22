@@ -33,6 +33,12 @@
 		<if test="orderBy != 'none'">
 			ORDER BY ${orderBy} ${orderByDir}
 		</if>
+		<if test="difficulty != 0">
+    		AND challenge_difficulty_id = #{difficulty}
+		</if>
+ 		 <!-- <if test="possibility != false">
+			AND public_type = ${possibility ? 1 : 0}
+		</if> -->
 	</select>
 	<select id="select" parameterType="int" resultType="Challenge">
 		SELECT id, name, created_at, start_at, finish_at, description,
