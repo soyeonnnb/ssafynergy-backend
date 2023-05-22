@@ -32,7 +32,7 @@ import io.jsonwebtoken.security.SignatureException;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("api/v1/board")
+@RequestMapping("/api/v1/board")
 public class BoardController {
 	@Autowired
 	private BoardService bs;

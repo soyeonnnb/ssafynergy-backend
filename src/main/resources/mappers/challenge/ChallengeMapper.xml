@@ -39,8 +39,7 @@
 			limit_person_num, public_type, challenge_difficulty_id, opportunity, is_giveup,
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
-			(select count(*) from review where challenge_id = challenge.id) as reviewCnt,
-			(select count(*) from )
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt
 		FROM Challenge WHERE id=#{id}
 	</select>
 </mapper>
