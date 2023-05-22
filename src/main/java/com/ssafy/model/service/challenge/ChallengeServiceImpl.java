@@ -45,28 +45,4 @@ public class ChallengeServiceImpl implements ChallengeService{
 		return cd.select(id);
 	}
 
-	@Override
-	public int getParticipatedCnt(int id) {
-		int participatedCnt = 0;
-		List<ChallengeParticipate> list = cpd.getParticipatedPersonNum(id);
-		
-		for(ChallengeParticipate c : list) {
-			participatedCnt++;
-		}
-		
-		return participatedCnt;
-	}
-
-	@Override
-	public int getLikeCnt(int id) {
-		int LikeCnt = 0;
-		List<ChallengeLike> list = cld.getLikePersonNum(id);
-		
-		for (ChallengeLike c : list) {
-			LikeCnt++;
-		}
-		
-		return LikeCnt;
-	}
-	
 }

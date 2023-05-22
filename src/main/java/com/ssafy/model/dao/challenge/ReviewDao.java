@@ -8,6 +8,6 @@ public interface ReviewDao {
 	int insert(Review review);
 	int update(Review review);
 	int delete(int id);
-	List<Review> searchChallengeReview(String challengeId);
+	List<Review> searchChallengeReview(int id);
 	List<Review> searchUserReview(String userId);
 }

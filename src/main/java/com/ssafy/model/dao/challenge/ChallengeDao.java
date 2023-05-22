@@ -10,6 +10,4 @@ public interface ChallengeDao {
 	int update(Challenge challenge);
 	List<Challenge> search(SearchCondition condition);
 	Challenge select(int id);
-	int getParticipatedCnt(int id);
-	int getLikeCnt(int id);
 }

@@ -14,12 +14,16 @@ public class Challenge {
 	private int challengeDifficultyId;
 	private int opportunity;
 	private boolean isGiveup;
+	private int participateCnt;
+	private int likeCnt;
+	private int reviewCnt;
 	
 	public Challenge() {
 	}
 
 	public Challenge(int id, String name, Date createdAt, Date startAt, Date finishAt, String description,
-			int limitPersonNum, boolean publicType, int challengeDifficultyId, int opportunity, boolean isGiveup) {
+			int limitPersonNum, boolean publicType, int challengeDifficultyId, int opportunity, boolean isGiveup,
+			int participateCnt, int likeCnt, int reviewCnt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,6 +36,9 @@ public class Challenge {
 		this.challengeDifficultyId = challengeDifficultyId;
 		this.opportunity = opportunity;
 		this.isGiveup = isGiveup;
+		this.participateCnt = participateCnt;
+		this.likeCnt = likeCnt;
+		this.reviewCnt = reviewCnt;
 	}
 
 	public int getId() {
@@ -122,12 +129,46 @@ public class Challenge {
 		this.isGiveup = isGiveup;
 	}
 
+	
+	
+	public int getParticipateCnt() {
+		return participateCnt;
+	}
+
+	public void setParticipateCnt(int participateCnt) {
+		this.participateCnt = participateCnt;
+	}
+
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
+
+	public int getReviewCnt() {
+		return reviewCnt;
+	}
+
+	public void setReviewCnt(int reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+
 	@Override
 	public String toString() {
 		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
 				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
 				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
-				+ opportunity + ", isGiveup=" + isGiveup + "]";
+				+ opportunity + ", isGiveup=" + isGiveup + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt
+				+ ", reviewCnt=" + reviewCnt + ", getId()=" + getId() + ", getName()=" + getName() + ", getCreatedAt()="
+				+ getCreatedAt() + ", getStartAt()=" + getStartAt() + ", getFinishAt()=" + getFinishAt()
+				+ ", getDescription()=" + getDescription() + ", getLimitPersonNum()=" + getLimitPersonNum()
+				+ ", isPublicType()=" + isPublicType() + ", getChallengeDifficultyId()=" + getChallengeDifficultyId()
+				+ ", getOpportunity()=" + getOpportunity() + ", isGiveup()=" + isGiveup() + ", getParticipateCnt()="
+				+ getParticipateCnt() + ", getLikeCnt()=" + getLikeCnt() + ", getReviewCnt()=" + getReviewCnt()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 	
