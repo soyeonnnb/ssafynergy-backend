@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.model.dto.user.User;
+import com.ssafy.model.service.FileHandleService;
 import com.ssafy.model.service.user.UserService;
 import com.ssafy.util.JwtUtil;
 
@@ -71,14 +72,29 @@ public class UserController {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@Autowired
 	private ResourceLoader resLoader;
 
-	@PostMapping("/addProfileImg")
+	@Autowired
+	private FileHandleService fs;
+	
+//	@PostMapping("/profileImg")
+//	public ResponseEntity<String> addProfileImg(@RequestParam("profile-img-edit") MultipartFile img) {
+//		String filePath;
+//		try {
+//			filePath = fs.saveFile(img);
+//			return new ResponseEntity<String>(filePath, HttpStatus.OK);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//	}
+
+	@PostMapping("/profileImg")
 	public ResponseEntity<String> addProfileImg(@RequestParam("profile-img-edit") MultipartFile img) {
 //		System.out.println(img.getOriginalFilename());
-		Resource res = resLoader.getResource("classpath:static/upload/user");
+		Resource res = resLoader.getResource("classpath:/static/upload/user");
 		String filePath = "";
 		try {
 			if (!res.getFile().exists())
@@ -95,7 +111,6 @@ public class UserController {
 		}
 		return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
-	
 
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")

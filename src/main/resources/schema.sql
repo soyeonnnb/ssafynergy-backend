@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Board_Category` (
   `reviewer_type` TINYINT NOT NULL DEFAULT 0,
   `like_type` TINYINT NOT NULL DEFAULT 1,
   `is_challenge` TINYINT NULL DEFAULT 0,
-  `Challenge_id` INT NULL DEFAULT -1,
+  `Challenge_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Board_Category_Challenge1_idx` (`Challenge_id` ASC) VISIBLE,
   CONSTRAINT `fk_Board_Category_Challenge1`

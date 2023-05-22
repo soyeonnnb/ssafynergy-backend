@@ -7,7 +7,14 @@
 		INSERT INTO Board_Category
 		(name, is_authorized, writer_type, reviewer_type, like_type, is_challenge, Challenge_id)
 		VALUES
-		(#{name}, #{isAuthorized}, #{writerType}, #{reviewerType}, #{likeType}, #{isChallenge}, #{challengeId})
+		(#{name}, #{isAuthorized}, #{writerType}, #{reviewerType}, #{likeType}, #{isChallenge},
+		<if test="isChallenge">
+		#{challengeId}
+		</if>
+		<if test="!isChallenge">
+		NULL
+		</if>
+		)
 	</insert>
 	<update id="update" parameterType="BoardCategory">
 		UPDATE Board_Category
