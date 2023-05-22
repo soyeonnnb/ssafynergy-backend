@@ -1,5 +1,7 @@
 package com.ssafy.controller.user;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +22,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.ssafy.model.dto.board.Board;
 import com.ssafy.model.dto.user.User;
 import com.ssafy.model.service.user.UserService;
 import com.ssafy.util.JwtUtil;
@@ -66,6 +71,31 @@ public class UserController {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@Autowired
+	private ResourceLoader resLoader;
+
+	@PostMapping("/addProfileImg")
+	public ResponseEntity<String> addProfileImg(@RequestParam("profile-img-edit") MultipartFile img) {
+//		System.out.println(img.getOriginalFilename());
+		Resource res = resLoader.getResource("classpath:static/upload/user");
+		String filePath = "";
+		try {
+			if (!res.getFile().exists())
+				res.getFile().mkdir();
+			if (img != null && img.getSize() > 0) {
+				filePath = System.currentTimeMillis() + "_" + img.getOriginalFilename();
+				System.out.println(filePath);
+				img.transferTo(new File(res.getFile().getCanonicalPath() + "/" + filePath));
+				return new  ResponseEntity<String>(filePath, HttpStatus.OK);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
 
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")

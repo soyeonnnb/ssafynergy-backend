@@ -25,25 +25,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public int regist(User user) {
-		fileHandling(user);
+//		fileHandling(user);
 		return ud.insert(user);
 	}
 
-	private void fileHandling(User user) {
-		Resource res = resLoader.getResource("resources/user/profile/" + user.getId());
-		try {
-			if (!res.getFile().exists())
-				res.getFile().mkdir();
-			MultipartFile file = user.getFile();
-			if (file != null && file.getSize() > 0) {
-				user.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-				file.transferTo(new File(res.getFile().getCanonicalPath() + "/" + user.getImg()));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	private void fileHandling(User user) {
+//		Resource res = resLoader.getResource("resources/user/profile/" + user.getId());
+//		try {
+//			if (!res.getFile().exists())
+//				res.getFile().mkdir();
+//			MultipartFile file = user.getFile();
+//			if (file != null && file.getSize() > 0) {
+//				user.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+//				file.transferTo(new File(res.getFile().getCanonicalPath() + "/" + user.getImg()));
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Override
 	public User selectById(String id) {

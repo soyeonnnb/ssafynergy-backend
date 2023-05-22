@@ -17,14 +17,13 @@ public class User {
 	private String gender;
 	private String comment;
 	private String socialLogin;
-	private MultipartFile file;
 
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public User(String id, String password, String name, String nickname, Date registDate, String email, String type,
-			String img, Date birth, String gender, String comment, String socialLogin, MultipartFile file) {
+			String img, Date birth, String gender, String comment, String socialLogin) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -38,7 +37,6 @@ public class User {
 		this.gender = gender;
 		this.comment = comment;
 		this.socialLogin = socialLogin;
-		this.file = file;
 	}
 
 	public User(String id, String password, String name, String nickname, String email, String socialLogin,
@@ -125,13 +123,6 @@ public class User {
 		this.socialLogin = socialLogin;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
 
 	public Date getBirth() {
 		return birth;
@@ -161,7 +152,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname
 				+ ", registDate=" + registDate + ", email=" + email + ", type=" + type + ", img=" + img + ", birth="
-				+ birth + ", gender=" + gender + ", socialLogin=" + socialLogin + ", file=" + file + "]";
+				+ birth + ", gender=" + gender + ", socialLogin=" + socialLogin + "]";
 	}
 
 }
