@@ -10,4 +10,6 @@ public interface BoardCategoryService  {
 	int update(BoardCategory boardCategory);
 	
 	List<BoardCategory> selectAll();
+	
+	BoardCategory selectById(int id);
 }
