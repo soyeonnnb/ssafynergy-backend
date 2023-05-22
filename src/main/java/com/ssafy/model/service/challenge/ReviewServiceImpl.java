@@ -30,8 +30,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> searchChallengeReview(String challengeId) {
-		return rd.searchChallengeReview(challengeId);
+	public List<Review> searchChallengeReview(int id) {
+		return rd.searchChallengeReview(id);
 	}
 
 	@Override

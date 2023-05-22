@@ -21,7 +21,12 @@
 		WHERE id = #{id}
 	</update>
 	<select id="search" parameterType="SearchCondition" resultType="Challenge">
-		SELECT * FROM Challenge
+		SELECT id, name, created_at, start_at, finish_at, description,
+			limit_person_num, public_type, challenge_difficulty_id, opportunity, is_giveup,
+			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
+			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt
+		FROM Challenge
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
 		</if>
@@ -30,6 +35,12 @@
 		</if>
 	</select>
 	<select id="select" parameterType="int" resultType="Challenge">
-		SELECT * FROM Challenge WHERE id=#{id}
+		SELECT id, name, created_at, start_at, finish_at, description,
+			limit_person_num, public_type, challenge_difficulty_id, opportunity, is_giveup,
+			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
+			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt,
+			(select count(*) from )
+		FROM Challenge WHERE id=#{id}
 	</select>
 </mapper>

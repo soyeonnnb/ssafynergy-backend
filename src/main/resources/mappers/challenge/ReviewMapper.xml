@@ -23,10 +23,10 @@
 		DELETE FROM Review
 		WHERE id = #{id}
 	</delete>
-	<select id="searchChallengeReview" parameterType="String" resultType="Review">
-		SELECT * FROM Review WHERE challengeId=#{challengeId}
+	<select id="searchChallengeReview" parameterType="int" resultType="Review">
+		SELECT * FROM Review WHERE challenge_id=#{challengeId}
 	</select>
 	<select id="searchUserReview" parameterType="String" resultType="Review">
-		SELECT * FROM Review WHERE userId=#{userId}
+		SELECT * FROM Review WHERE user_id=#{userId}
 	</select>
 </mapper>

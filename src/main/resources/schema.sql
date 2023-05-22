@@ -110,8 +110,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge` (
 ENGINE = InnoDB;
 
 INSERT INTO challenge
-VALUES(0, '미라클챌린지', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 );
-
+VALUES(0, '미라클챌린지', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+	(0, '인기1', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+    (0, '인기2', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+    (0, '인기3', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+    (0, '인기4', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+    (0, '인기5', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
+    (0, '인기6', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 );
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Challenge_participate`
@@ -210,6 +215,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_Like` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO challenge_like
+VALUES ('admin', 1, now()), ('admin', 2, now()), ('admin', 3, now()), ('admin', 4, now()), ('admin', 5, now()), ('admin', 6, now()),
+('junghun', 1, now()), ('junghun', 2, now()), ('junghun', 3, now()), ('junghun', 4, now()), ('junghun', 5, now()),
+('soyeon', 1, now()), ('soyeon', 2, now()), ('soyeon', 3, now()), ('soyeon', 4, now()),
+('ssafy1', 4, now()), ('ssafy1', 5, now()), ('ssafy1', 6, now()),
+('ssafy2', 6, now()), ('ssafy2', 5, now());
+
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Review`
@@ -236,6 +248,14 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Review` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+INSERT INTO review
+VALUES (0, '제목1', '내용1', now(), 1, 'admin', 5),
+(0, '제목2', '내용2', now(), 1, 'admin', 4),
+(0, '제목3', '내용3', now(), 1, 'admin', 2),
+(0, '제목4', '내용4', now(), 1, 'admin', 1),
+(0, 'junghun', '하기싫어', now(), 2, 'junghun', 5);
+
 
 
 -- -----------------------------------------------------

@@ -20,7 +20,7 @@ import com.ssafy.model.service.challenge.ReviewService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/challenge/review")
+@RequestMapping("/api/v1/challenge/review")
 public class ReviewController {
 
 	@Autowired
@@ -49,8 +49,9 @@ public class ReviewController {
 
 	@GetMapping("/{id}")
 	@ApiOperation(value = "챌린지{id}별 리뷰 목록을 조회한다.")
-	public ResponseEntity<List<Review>> searchChallengeReview(@PathVariable String challengeId) {
-		List<Review> list = rs.searchChallengeReview(challengeId);
+	public ResponseEntity<List<Review>> searchChallengeReview(@PathVariable int id) {
+		List<Review> list = rs.searchChallengeReview(id);
+		System.out.println("ddddl"+list);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
