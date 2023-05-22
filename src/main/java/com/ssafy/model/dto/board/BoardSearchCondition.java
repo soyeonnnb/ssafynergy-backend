@@ -8,7 +8,7 @@ public class BoardSearchCondition {
 	private boolean hasBoardCategoryId = false;
 	private int boardCategoryId;
 	private String orderBy = "none";
-	private String orderByDir;
+	private String orderByDir = "asc";
 
 	public BoardSearchCondition() {
 		// TODO Auto-generated constructor stub
