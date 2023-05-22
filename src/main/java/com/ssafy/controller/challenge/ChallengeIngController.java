@@ -24,57 +24,40 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/v1/challenge-participate/ing")
 public class ChallengeIngController {
-	
+
 	@Autowired
 	private ChallengeIngService cs;
-	
+
 	@PostMapping("/{id}")
 	@ApiOperation(value = "당일의 챌린지 현황을 등록한다.")
-	public ResponseEntity<?> insert(@RequestBody ChallengeIng challengeIng, @PathVariable int id){
+	public ResponseEntity<?> insert(@RequestBody ChallengeIng challengeIng, @PathVariable int id) {
 		cs.insert(challengeIng);
 		return new ResponseEntity<ChallengeIng>(challengeIng, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/{id}")
 	@ApiOperation(value = "당일의 챌린지 현황을 수정한다.")
-	public ResponseEntity<?> update(@RequestBody ChallengeIng challengeIng, @PathVariable int id){
+	public ResponseEntity<?> update(@RequestBody ChallengeIng challengeIng, @PathVariable int id) {
 		cs.update(challengeIng);
 		return new ResponseEntity<ChallengeIng>(challengeIng, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
 	@ApiOperation(value = "전체회원에 대한 현황 목록을 조회한다.")
-	public ResponseEntity<List<ChallengeIng>> seleteAll(@PathVariable int id){
+	public ResponseEntity<List<ChallengeIng>> seleteAll(@PathVariable int id) {
 		List<ChallengeIng> list = cs.selectAll();
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}else {
+		} else {
 			return new ResponseEntity<List<ChallengeIng>>(list, HttpStatus.OK);
 		}
 	}
-	
+
 	@DeleteMapping("/{id}/{index}")
 	@ApiOperation(value = "{index}날짜의 챌린지 현황을 삭제한다.")
-	public ResponseEntity<String> delete(@PathVariable(value = "id") int id, @PathVariable(value = "index") int index){
+	public ResponseEntity<String> delete(@PathVariable(value = "id") int id, @PathVariable(value = "index") int index) {
 		cs.delete(index);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

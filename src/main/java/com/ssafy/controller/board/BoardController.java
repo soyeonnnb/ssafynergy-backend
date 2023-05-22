@@ -92,7 +92,7 @@ public class BoardController {
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
 		}
-		
+
 	}
 
 	@PutMapping("/post/{id}")

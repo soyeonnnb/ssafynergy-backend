@@ -19,7 +19,10 @@ public class ChallengeServiceImpl implements ChallengeService{
 	@Autowired
 	private ChallengeDao cd;
 	
+	@Autowired
 	private ChallengeParticipateDao cpd;
+	
+	@Autowired
 	private ChallengeLikeDao cld;
 	
 	@Override

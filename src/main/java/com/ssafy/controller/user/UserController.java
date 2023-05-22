@@ -136,7 +136,7 @@ public class UserController {
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
 		}
-		
+
 	}
 
 	@ApiOperation(value = "회원탈퇴")
@@ -153,6 +153,6 @@ public class UserController {
 		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
-		}	
+		}
 	}
 }

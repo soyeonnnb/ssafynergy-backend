@@ -27,18 +27,18 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/v1/board/like")
 public class BoardLikeController {
-	
-	private String FAIL="FAIL";
-	
+
+	private String FAIL = "FAIL";
+
 	@Autowired
 	private BoardLikeService bs;
-	
+
 	@Autowired
 	private JwtUtil jwtUtil;
-	
+
 	@PostMapping("")
 	@ApiOperation(value = "게시글에 좋아요를 누른다.")
-	public ResponseEntity<?> insert(@RequestHeader("access-token") String token, @RequestBody BoardLike boardLike){
+	public ResponseEntity<?> insert(@RequestHeader("access-token") String token, @RequestBody BoardLike boardLike) {
 		try {
 			String userId = (String) jwtUtil.parseToken(token).get("id");
 			boardLike.setUserId(userId);
@@ -49,12 +49,12 @@ public class BoardLikeController {
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
 		}
-		
+
 	}
-	
+
 	@DeleteMapping("/{boardId}")
 	@ApiOperation(value = "게시글의 좋아요를 취소한다.")
-	public ResponseEntity<?> delete(@RequestHeader("access-token") String token, @PathVariable int boardId){
+	public ResponseEntity<?> delete(@RequestHeader("access-token") String token, @PathVariable int boardId) {
 		try {
 			String userId = (String) jwtUtil.parseToken(token).get("id");
 			bs.delete(new BoardLike(userId, boardId));
@@ -63,8 +63,7 @@ public class BoardLikeController {
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>(FAIL, HttpStatus.BAD_GATEWAY);
 		}
-	
+
 	}
-	
-	
+
 }

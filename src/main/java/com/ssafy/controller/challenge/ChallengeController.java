@@ -26,24 +26,24 @@ import io.swagger.annotations.ApiOperation;
 public class ChallengeController {
 	@Autowired
 	private ChallengeService cs;
-	
+
 	@PostMapping("")
 	@ApiOperation(value = "챌린지를 추가한다.")
-	public ResponseEntity<?> insert(@RequestBody Challenge challenge){
+	public ResponseEntity<?> insert(@RequestBody Challenge challenge) {
 		cs.insert(challenge);
 		return new ResponseEntity<Challenge>(challenge, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("")
 	@ApiOperation(value = "챌린지를 수정한다.")
-	public ResponseEntity<String> update(@RequestBody Challenge challenge){
+	public ResponseEntity<String> update(@RequestBody Challenge challenge) {
 		cs.update(challenge);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/search")
 	@ApiOperation(value = "옵션을 선택하여 챌린지를 검색한다.")
-	public ResponseEntity<?> search(SearchCondition searchcondition){
+	public ResponseEntity<?> search(SearchCondition searchcondition) {
 		System.out.println("test1");
 		List<Challenge> list = cs.search(searchcondition);
 		System.out.println(list);
@@ -53,17 +53,17 @@ public class ChallengeController {
 			return new ResponseEntity<List<Challenge>>(list, HttpStatus.OK);
 		}
 	}
-	
+
 	@GetMapping("/{id}")
 	@ApiOperation(value = "챌린지{id}의 정보를 반환한다.")
-	public ResponseEntity<?> detail(@PathVariable int id){
+	public ResponseEntity<?> detail(@PathVariable int id) {
 		Challenge challenge = cs.select(id);
-		System.out.println(challenge+"출력");
+		System.out.println(challenge + "출력");
 		if (challenge == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			return new ResponseEntity<Challenge>(challenge, HttpStatus.OK);
 		}
 	}
-	
+
 }

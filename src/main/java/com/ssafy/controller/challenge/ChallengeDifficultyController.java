@@ -19,35 +19,29 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/v1/challenge-difficulty")
 public class ChallengeDifficultyController {
-	
+
 	@Autowired
 	private ChallengeDifficultyService cs;
-	
+
 	@PostMapping("")
 	@ApiOperation(value = "챌린지 난이도를 추가한다.")
-	public ResponseEntity<?> insert(@RequestBody ChallengeDifficulty challengeDifficulty){
+	public ResponseEntity<?> insert(@RequestBody ChallengeDifficulty challengeDifficulty) {
 		cs.insert(challengeDifficulty);
 		return new ResponseEntity<ChallengeDifficulty>(challengeDifficulty, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("")
 	@ApiOperation(value = "챌린지 난이도를 수정한다.")
-	public ResponseEntity<?> update(@RequestBody ChallengeDifficulty challengeDifficulty){
+	public ResponseEntity<?> update(@RequestBody ChallengeDifficulty challengeDifficulty) {
 		cs.update(challengeDifficulty);
 		return new ResponseEntity<ChallengeDifficulty>(challengeDifficulty, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ApiOperation(value = "챌린지 난이도를 삭제한다.")
-	public ResponseEntity<String> delete(@PathVariable int id){
+	public ResponseEntity<String> delete(@PathVariable int id) {
 		cs.delete(id);
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

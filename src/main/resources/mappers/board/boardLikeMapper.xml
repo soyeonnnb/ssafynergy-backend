@@ -5,11 +5,7 @@
 <mapper namespace="com.ssafy.model.dao.board.BoardLikeDao">
 	<insert id="insert" parameterType="BoardLike" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_Like
-<<<<<<< HEAD
-		(user_id, Board_id)
-=======
 		(User_id, Board_id, created_at)
->>>>>>> feature/board
 		VALUES
 		(#{userId}, #{boardId}, now())
 	</insert>
