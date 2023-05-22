@@ -6,4 +6,6 @@ public interface BoardLikeService  {
 	int insert(BoardLike boardLike);
 	
 	int delete(BoardLike boardLike);
+	
+	boolean isLike(BoardLike boardLike);
 }

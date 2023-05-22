@@ -22,6 +22,12 @@
 		WHERE id = #{id}
 	</update>
 	<select id="selectAll" resultType="BoardCategory">
-		SELECT * FROM Board_Category
+		SELECT id, name, is_authorized, writer_type, reviewer_type, like_type, (select count(*) from board where board.board_category_id = board_category.id) as post_num FROM Board_Category
+	</select>
+	<select id="selectWriterTypeIsTrue" resultType="BoardCategory">
+		SELECT * FROM Board_Category where writer_type=true
+	</select>
+	<select id="selectById" parameterType="int" resultType="BoardCategory">
+		SELECT id, name, is_authorized, writer_type, reviewer_type, like_type, (select count(*) from board where board.board_category_id = board_category.id) as post_num FROM Board_Category where id=#{id}
 	</select>
 </mapper>

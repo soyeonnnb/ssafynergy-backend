@@ -20,7 +20,10 @@ public class WebConfig implements WebMvcConfigurer {
 
 		registry.addResourceHandler("/swagger-ui/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/board
 	}
 
 	@Override
@@ -34,7 +37,12 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+<<<<<<< HEAD
 		registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/");// .excludePathPatterns("/api/v1/user/login");
+=======
+		registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/**").excludePathPatterns("/api/v1/user/login",
+				"/api/v1/user/regist", "/api/v1/user/logout");
+>>>>>>> feature/board
 	}
 
 }

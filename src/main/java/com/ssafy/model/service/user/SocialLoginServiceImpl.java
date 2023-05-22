@@ -49,12 +49,10 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 			sb.append("&client_id=" + env.getProperty("KAKAO_REST_API"));
 			sb.append("&redirect_uri=" + env.getProperty("KAKAO_REDIRECT_URI"));
 			sb.append("&code=" + code);
-
 			bw.write(sb.toString());
 			bw.flush();
 
 			int responseCode = urlConnection.getResponseCode();
-
 			if (responseCode == 200) {
 				BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 				String line = "";
@@ -102,9 +100,7 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 			HttpURLConnection urlConnection;
 
 			urlConnection = (HttpURLConnection) url.openConnection();
-
-			urlConnection.setRequestProperty("Authorization",
-					"Bearer " + accessToken + "/KakaoAK " + env.getProperty("KAKAO_ADMIN_KEY"));
+			urlConnection.setRequestProperty("Authorization", "Bearer " + accessToken);
 			urlConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			urlConnection.setRequestMethod("GET");
 
@@ -115,8 +111,6 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 				res += line;
 			}
 
-			System.out.println("res = " + res);
-
 			JSONParser parser = new JSONParser();
 			JSONObject obj;
 
@@ -126,13 +120,14 @@ public class SocialLoginServiceImpl implements SocialLoginService {
 			JSONObject profile = (JSONObject) kakao_account.get("profile");
 
 			String id = obj.get("id").toString();
-			String name = kakao_account.get("name").toString();
+			String name = profile.get("nickname").toString();
 			String password = "a123456789!";
 			String nickname = profile.get("nickname").toString();
 			String email = kakao_account.get("email").toString();
 			String socialLogin = "K";
+			String type="N";
 
-			return new User(id, password, name, nickname, email, socialLogin);
+			return new User(id, password, name, nickname, email, socialLogin, type);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

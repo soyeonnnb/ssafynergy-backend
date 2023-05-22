@@ -7,6 +7,7 @@ public interface UserService {
 	User selectById(String id);
 	User selectByNickname(String username);
 	User selectByIdAndPassword(User user);
+	User selectByEmail(String email);
 	int update(User user);
 	int withdrawal(String id);
 }

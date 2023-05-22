@@ -5,12 +5,19 @@
 <mapper namespace="com.ssafy.model.dao.board.BoardLikeDao">
 	<insert id="insert" parameterType="BoardLike" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_Like
+<<<<<<< HEAD
 		(user_id, Board_id)
+=======
+		(User_id, Board_id, created_at)
+>>>>>>> feature/board
 		VALUES
-		(#{userId}, #{boardId})
+		(#{userId}, #{boardId}, now())
 	</insert>
 	<delete id="delete">
 		DELETE FROM Board_Like
 		WHERE User_id=#{userId} and Board_id=#{boardId}
 	</delete>
+	<select id="search" parameterType="BoardLike" resultType="int">
+		SELECT count(*) FROM board_like WHERE board_id=#{boardId} and user_id=#{userId}
+	</select>
 </mapper>

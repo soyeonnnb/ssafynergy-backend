@@ -5,6 +5,7 @@ import java.security.Key;
 
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -16,7 +17,7 @@ import io.jsonwebtoken.security.SignatureException;
 @Component
 public class JwtUtil {
 
-	private static final String SALT = "SSAFYNERGY";
+	private static final String SALT = "S2S0A2F3Y0N5E2R6GY";
 	
 	 private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
@@ -27,27 +28,12 @@ public class JwtUtil {
 	}
 
 	// 유효성 검사
-	public void valid(String token) {
-		try {
-			Jwts.parserBuilder().setSigningKey(SALT.getBytes("UTF-8")).build().parseClaimsJws(token);
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExpiredJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void valid(String token) throws SignatureException, ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, IllegalArgumentException, UnsupportedEncodingException {
+			Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+	}
+	
+	// 헤더에서 토큰 정보 가져오기
+	public Claims parseToken(String token) throws SignatureException, ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, IllegalArgumentException, UnsupportedEncodingException {
+		return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
 	}
 }

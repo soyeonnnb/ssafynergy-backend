@@ -6,19 +6,28 @@ public class BoardReview {
 	private int id;
 	private int boardId;
 	private String userId;
+	private String userNickname;
 	private String content;
-	private Date createAt;
-	
+	private Date createdAt;
+
 	public BoardReview() {
 	}
 
-	public BoardReview(int id, int boardId, String userId, String content, Date createAt) {
+	public BoardReview(int id, int boardId, String userId, String content, Date createdAt) {
 		super();
 		this.id = id;
 		this.boardId = boardId;
 		this.userId = userId;
 		this.content = content;
-		this.createAt = createAt;
+		this.createdAt = createdAt;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 
 	public int getId() {
@@ -53,19 +62,19 @@ public class BoardReview {
 		this.content = content;
 	}
 
-	public Date getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardReview [id=" + id + ", boardId=" + boardId + ", userId=" + userId + ", content=" + content
-				+ ", createAt=" + createAt + "]";
+				+ ", createdAt=" + createdAt + "]";
 
 	}
-	
+
 }
