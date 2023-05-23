@@ -9,9 +9,9 @@
 		VALUES
 		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity}) -->
 		INSERT INTO Challenge
-		(name, challenge_difficulty_id, start_at, finish_at, limit_person_num, total_day, description)
+		(name, challenge_difficulty_id, created_at, start_at, finish_at, limit_person_num, total_day, description)
 		VALUES
-		(#{name}, #{challengeDifficultyId}, #{startAt}, #{finishAt}, #{limitPersonNum}, #{totalDay}, #{description})
+		(#{name}, #{challengeDifficultyId}, now(), #{startAt}, #{finishAt}, #{limitPersonNum}, #{totalDay}, #{description})
 	</insert>
 	<update id="update" parameterType="Challenge">
 		UPDATE Challenge
