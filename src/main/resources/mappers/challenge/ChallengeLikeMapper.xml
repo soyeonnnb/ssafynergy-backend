@@ -2,18 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.model.dao.challenge.ChallengeLikeDao">
+<mapper
+	namespace="com.ssafy.model.dao.challenge.ChallengeLikeDao">
 	<insert id="insert" parameterType="ChallengeLike">
 		INSERT INTO Challenge_Like
-		(User_id, Challenge_id)
+		(User_id, Challenge_id, created_at)
 		VALUES
-		(#{userId}, #{challengeId})
+		(#{userId}, #{challengeId},
+		now())
 	</insert>
-	<delete id = "delete" parameterType="int">
+	<delete id="delete" parameterType="ChallengeLike">
 		DELETE FROM Challenge_Like
-		WHERE id = #{id}
+		WHERE user_id = #{userId} and challenge_id = #{challengeId}
 	</delete>
-	<select id="search" parameterType="String" resultType="ChallengeLike">
-		SELECT * FROM Challenge_Like WHERE userId = #{userId}
+	<select id="selectOne" parameterType="ChallengeLike"
+		resultType="int">
+		SELECT count(Challenge_Like.user_id) FROM challenge_like
+		WHERE user_id = #{userId} and challenge_id = #{challengeId}
+	</select>
+	<select id="selectByUserId" parameterType="String"
+		resultType="Challenge">
+		SELECT
+		challenge.id, challenge.name, challenge.created_at,
+		challenge.start_at, challenge.finish_at, challenge.description,
+		challenge.limit_person_num, challenge.public_type,
+		challenge.challenge_difficulty_id,
+		challenge.opportunity,challenge.total_day
+		FROM challenge,
+		Challenge_Like WHERE challenge.id =
+		challenge_like.challenge_id and
+		user_id = #{userId}
+	</select>
+	<select id="getLikePersonNum" parameterType="int"
+		resultType="ChallengeLike">
+		SELECT count(user_id) FROM challengeLike WHERE
+		challenge_id=#{id}
 	</select>
 </mapper>
