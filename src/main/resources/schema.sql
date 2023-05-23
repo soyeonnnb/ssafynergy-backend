@@ -143,7 +143,14 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_participate` (
 ENGINE = InnoDB;
 
 INSERT INTO challenge_participate
-VALUES(0, 'ssafy1', 0, now(), 0);
+VALUES(0, 'ssafy1', 1, now(), 0),
+(0, 'ssafy1', 2, now(), 0),
+(0, 'admin', 1, now(), 0),
+(0, 'admin', 2, now(), 0),
+(0, 'admin', 3, now(), 0),
+(0, 'admin', 4, now(), 0),
+(0, 'admin', 5, now(), 0),
+(0, 'admin', 6, now(), 0);
 
 
 -- -----------------------------------------------------
@@ -252,9 +259,9 @@ ENGINE = InnoDB;
 
 INSERT INTO review
 VALUES (0, '제목1', '내용1', now(), 1, 'admin', 5),
-(0, '제목2', '내용2', now(), 1, 'admin', 4),
-(0, '제목3', '내용3', now(), 1, 'admin', 2),
-(0, '제목4', '내용4', now(), 1, 'admin', 1),
+(0, '제목2', '내용2', now(), 2, 'admin', 4),
+(0, '제목3', '내용3', now(), 3, 'admin', 2),
+(0, '제목4', '내용4', now(), 4, 'admin', 1),
 (0, 'junghun', '하기싫어', now(), 2, 'junghun', 5);
 
 
