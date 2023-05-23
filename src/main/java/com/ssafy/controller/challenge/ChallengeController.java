@@ -57,6 +57,7 @@ public class ChallengeController {
 	@ApiOperation(value = "챌린지{id}의 정보를 반환한다.")
 	public ResponseEntity<?> detail(@PathVariable int id) {
 		Challenge challenge = cs.select(id);
+		System.out.println(challenge);
 		if (challenge == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {

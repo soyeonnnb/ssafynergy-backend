@@ -159,7 +159,7 @@ VALUES(0, 'ssafy1', 1, now(), 0),
 CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_ing` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Challenge_participate_id` INT NOT NULL,
-  `index` INT NOT NULL,
+  `idx` INT NOT NULL,
   `content` VARCHAR(500) NULL,
   `check` TINYINT NOT NULL DEFAULT 0,
   `created_at` DATETIME NOT NULL,

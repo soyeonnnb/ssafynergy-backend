@@ -1,12 +1,10 @@
 package com.ssafy.model.dto.challenge;
 
-import java.sql.Date;
-
 public class Review {
 	private int id;
 	private String title;
 	private String content;
-	private Date createdAt;
+	private String createdAt;
 	private int challengeId;
 	private String userId;
 	private int rating;
@@ -14,7 +12,7 @@ public class Review {
 	public Review() {
 	}
 
-	public Review(int id, String title, String content, Date createdAt, int challengeId, String userId, int rating) {
+	public Review(int id, String title, String content, String createdAt, int challengeId, String userId, int rating) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -49,11 +47,11 @@ public class Review {
 		this.content = content;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

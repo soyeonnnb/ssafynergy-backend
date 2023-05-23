@@ -1,15 +1,13 @@
 package com.ssafy.model.dto.user;
 
-import java.sql.Date;
-
 public class Follow {
 	private String userId;
 	private String followUserId;
-	private Date createdAt;
+	private String createdAt;
 	public Follow() {
 		// TODO Auto-generated constructor stub
 	}
-	public Follow(String userId, String followUserId, Date createdAt) {
+	public Follow(String userId, String followUserId, String createdAt) {
 		super();
 		this.userId = userId;
 		this.followUserId = followUserId;
@@ -32,10 +30,10 @@ public class Follow {
 	public void setFollowUserId(String followUserId) {
 		this.followUserId = followUserId;
 	}
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 	@Override

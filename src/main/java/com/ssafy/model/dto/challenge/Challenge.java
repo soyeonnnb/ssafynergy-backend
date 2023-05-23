@@ -1,13 +1,11 @@
 package com.ssafy.model.dto.challenge;
 
-import java.sql.Date;
-
 public class Challenge {
 	private int id;
 	private String name;
-	private Date createdAt;
-	private Date startAt;
-	private Date finishAt;
+	private String createdAt;
+	private String startAt;
+	private String finishAt;
 	private String description;
 	private int limitPersonNum;
 	private boolean publicType;         // 공개여부
@@ -22,7 +20,7 @@ public class Challenge {
 	public Challenge() {
 	}
 
-	public Challenge(int id, String name, Date createdAt, Date startAt, Date finishAt, String description,
+	public Challenge(int id, String name, String createdAt, String startAt, String finishAt, String description,
 			int limitPersonNum, boolean publicType, int challengeDifficultyId, int opportunity, boolean isGiveup,
 			int participateCnt, int likeCnt, int reviewCnt, int totalDay) {
 		super();
@@ -58,27 +56,27 @@ public class Challenge {
 		this.name = name;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getStartAt() {
+	public String getStartAt() {
 		return startAt;
 	}
 
-	public void setStartAt(Date startAt) {
+	public void setStartAt(String startAt) {
 		this.startAt = startAt;
 	}
 
-	public Date getFinishAt() {
+	public String getFinishAt() {
 		return finishAt;
 	}
 
-	public void setFinishAt(Date finishAt) {
+	public void setFinishAt(String finishAt) {
 		this.finishAt = finishAt;
 	}
 
@@ -162,6 +160,15 @@ public class Challenge {
 
 	public void setChallengeParticipateId(int challengeParticipateId) {
 		this.challengeParticipateId = challengeParticipateId;
+	}
+
+	@Override
+	public String toString() {
+		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
+				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
+				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
+				+ opportunity + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt + ", reviewCnt="
+				+ reviewCnt + ", totalDay=" + totalDay + ", challengeParticipateId=" + challengeParticipateId + "]";
 	}
 
 

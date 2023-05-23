@@ -1,19 +1,15 @@
 package com.ssafy.model.dto.user;
 
-import java.sql.Date;
-
-import org.springframework.web.multipart.MultipartFile;
-
 public class User {
 	private String id;
 	private String password;
 	private String name;
 	private String nickname;
-	private Date registDate;
+	private String registDate;
 	private String email;
 	private String type;
 	private String img;
-	private Date birth;
+	private String birth;
 	private String gender;
 	private String comment;
 	private String socialLogin;
@@ -22,8 +18,8 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String id, String password, String name, String nickname, Date registDate, String email, String type,
-			String img, Date birth, String gender, String comment, String socialLogin) {
+	public User(String id, String password, String name, String nickname, String registDate, String email, String type,
+			String img, String birth, String gender, String comment, String socialLogin) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -83,11 +79,11 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public Date getRegistDate() {
+	public String getRegistDate() {
 		return registDate;
 	}
 
-	public void setRegistDate(Date registDate) {
+	public void setRegistDate(String registDate) {
 		this.registDate = registDate;
 	}
 
@@ -124,11 +120,11 @@ public class User {
 	}
 
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

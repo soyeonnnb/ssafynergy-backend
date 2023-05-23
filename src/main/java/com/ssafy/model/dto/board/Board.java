@@ -6,7 +6,7 @@ public class Board {
 	private int id;
 	private String title;
 	private String content;
-	private Date createdAt;
+	private String createdAt;
 	private String userId;
 	private int boardCategoryId;
 	private String boardCategoryName;
@@ -28,7 +28,7 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int id, String title, String content, Date createdAt, String userId, int boardCategoryId,
+	public Board(int id, String title, String content, String createdAt, String userId, int boardCategoryId,
 			int viewCnt) {
 		super();
 		this.id = id;
@@ -96,11 +96,11 @@ public class Board {
 		this.content = content;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

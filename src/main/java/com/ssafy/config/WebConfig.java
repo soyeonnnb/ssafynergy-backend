@@ -37,7 +37,8 @@ public class WebConfig implements WebMvcConfigurer {
 //	public void addInterceptors(InterceptorRegistry registry) {
 //
 //		registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/**").excludePathPatterns("/api/v1/user/login",
-//				"/api/v1/user/regist", "/api/v1/user/logout", "api/v1//kakao/oauth");
+//				"/api/v1/user/regist", "/api/v1/user/logout", "api/v1//kakao/oauth", "**/profileImg");
+
 //
 //	}
 
