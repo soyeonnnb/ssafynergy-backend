@@ -10,28 +10,21 @@ public class Challenge {
 	private Date finishAt;
 	private String description;
 	private int limitPersonNum;
-	private boolean publicType;
-	private int challengeDifficultyId;
+	private boolean publicType;         // 공개여부
+	private int challengeDifficultyId;  // 인트로 줬네.... 일단 쉬움1 보통2 어려움3 
 	private int opportunity;
 	private int participateCnt;
 	private int likeCnt;
 	private int reviewCnt;
+	private int totalDay;
 	private int challengeParticipateId;
-	
-	public int getChallengeParticipateId() {
-		return challengeParticipateId;
-	}
-
-	public void setChallengeParticipateId(int challengeParticipateId) {
-		this.challengeParticipateId = challengeParticipateId;
-	}
 
 	public Challenge() {
 	}
 
 	public Challenge(int id, String name, Date createdAt, Date startAt, Date finishAt, String description,
 			int limitPersonNum, boolean publicType, int challengeDifficultyId, int opportunity, boolean isGiveup,
-			int participateCnt, int likeCnt, int reviewCnt) {
+			int participateCnt, int likeCnt, int reviewCnt, int totalDay) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,6 +39,7 @@ public class Challenge {
 		this.participateCnt = participateCnt;
 		this.likeCnt = likeCnt;
 		this.reviewCnt = reviewCnt;
+		this.totalDay = totalDay;
 	}
 
 	public int getId() {
@@ -104,11 +98,11 @@ public class Challenge {
 		this.limitPersonNum = limitPersonNum;
 	}
 
-	public boolean isPublicType() {
+	public boolean getIsPublicType() {
 		return publicType;
 	}
 
-	public void setPublicType(boolean publicType) {
+	public void setIsPublicType(boolean publicType) {
 		this.publicType = publicType;
 	}
 
@@ -128,10 +122,7 @@ public class Challenge {
 		this.opportunity = opportunity;
 	}
 
-	
 
-	
-	
 	public int getParticipateCnt() {
 		return participateCnt;
 	}
@@ -156,16 +147,22 @@ public class Challenge {
 		this.reviewCnt = reviewCnt;
 	}
 
-	@Override
-	public String toString() {
-		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
-				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
-				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
-				+ opportunity + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt + ", reviewCnt="
-				+ reviewCnt + "]";
+	public int getTotalDay() {
+		return totalDay;
+	}
+
+	public void setTotalDay(int totalDay) {
+		this.totalDay = totalDay;
 	}
 
 	
-	
-	
+	public int getChallengeParticipateId() {
+		return challengeParticipateId;
+	}
+
+	public void setChallengeParticipateId(int challengeParticipateId) {
+		this.challengeParticipateId = challengeParticipateId;
+	}
+
+
 }

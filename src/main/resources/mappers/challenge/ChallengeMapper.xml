@@ -4,10 +4,14 @@
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeDao">
 	<insert id="insert" parameterType="Challenge" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO Challenge
+		<!-- INSERT INTO Challenge
 		(name, description, limit_person_num, public_type, challenge_difficulty_id, opportunity)
 		VALUES
-		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity})
+		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity}) -->
+		INSERT INTO Challenge
+		(name, challenge_difficulty_id, start_at, finish_at, limit_person_num, total_day, description)
+		VALUES
+		(#{name}, #{challengeDifficultyId}, #{startAt}, #{finishAt}, #{limitPersonNum}, #{totalDay}, #{description})
 	</insert>
 	<update id="update" parameterType="Challenge">
 		UPDATE Challenge
@@ -22,24 +26,36 @@
 	</update>
 	<select id="search" parameterType="SearchCondition" resultType="Challenge">
 		SELECT id, name, created_at, start_at, finish_at, description,
-			limit_person_num, public_type, challenge_difficulty_id, opportunity, 
+			limit_person_num, public_type, challenge_difficulty_id, opportunity,
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
-			(select count(*) from review where challenge_id = challenge.id) as reviewCnt
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day
 		FROM Challenge
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
 		</if>
+		<if test="difficulty != 0">
+			<if test="key == 'none'">
+			WHERE
+			</if>
+			<if test="key != 'none'">
+			AND
+			</if>
+    		challenge_difficulty_id = #{difficulty}
+		</if>
+ 		<!-- <if test="possibility != false">
+			AND public_type = ${possibility ? 1 : 0}
+		</if> -->
 		<if test="orderBy != 'none'">
 			ORDER BY ${orderBy} ${orderByDir}
 		</if>
 	</select>
 	<select id="select" parameterType="int" resultType="Challenge">
 		SELECT id, name, created_at, start_at, finish_at, description,
-			limit_person_num, public_type, challenge_difficulty_id, opportunity, 
+			limit_person_num, public_type, challenge_difficulty_id, opportunity,
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
-			(select count(*) from review where challenge_id = challenge.id) as reviewCnt
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day
 		FROM Challenge WHERE id=#{id}
 	</select>
 </mapper>
