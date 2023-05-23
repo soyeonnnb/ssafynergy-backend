@@ -93,7 +93,6 @@ public class UserController {
 
 	@PostMapping("/profileImg")
 	public ResponseEntity<String> addProfileImg(@RequestParam("profile-img-edit") MultipartFile img) {
-//		System.out.println(img.getOriginalFilename());
 		Resource res = resLoader.getResource("classpath:/static/upload/user");
 		String filePath = "";
 		try {
@@ -101,12 +100,10 @@ public class UserController {
 				res.getFile().mkdir();
 			if (img != null && img.getSize() > 0) {
 				filePath = System.currentTimeMillis() + "_" + img.getOriginalFilename();
-//				System.out.println(filePath);
 				img.transferTo(new File(res.getFile().getCanonicalPath() + "/" + filePath));
 				return new  ResponseEntity<String>(filePath, HttpStatus.OK);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return new  ResponseEntity<>(HttpStatus.BAD_REQUEST);

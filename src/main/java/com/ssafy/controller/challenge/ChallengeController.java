@@ -44,7 +44,7 @@ public class ChallengeController {
 	@GetMapping("/search")
 	@ApiOperation(value = "옵션을 선택하여 챌린지를 검색한다.")
 	public ResponseEntity<?> search(SearchCondition searchcondition) {
-		System.out.println(searchcondition);
+//		System.out.println(searchcondition);
 		List<Challenge> list = cs.search(searchcondition);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ChallengeIng {
 	private int id;
 	private int challengeParticipateId;
-	private int index;
+	private int idx;
 	private String content;
 	private boolean check;
 	private Date createdAt;
@@ -14,12 +14,12 @@ public class ChallengeIng {
 	public ChallengeIng() {
 	}
 
-	public ChallengeIng(int id, int challengeParticipateId, int index, String content, boolean check, Date createdAt,
+	public ChallengeIng(int id, int challengeParticipateId, int idx, String content, boolean check, Date createdAt,
 			String img) {
 		super();
 		this.id = id;
 		this.challengeParticipateId = challengeParticipateId;
-		this.index = index;
+		this.idx = idx;
 		this.content = content;
 		this.check = check;
 		this.createdAt = createdAt;
@@ -42,12 +42,12 @@ public class ChallengeIng {
 		this.challengeParticipateId = challengeParticipateId;
 	}
 
-	public int getIndex() {
-		return index;
+	public int getIdx() {
+		return idx;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 
 	public String getContent() {
@@ -84,7 +84,7 @@ public class ChallengeIng {
 
 	@Override
 	public String toString() {
-		return "ChallengeIng [id=" + id + ", challengeParticipateId=" + challengeParticipateId + ", index=" + index
+		return "ChallengeIng [id=" + id + ", challengeParticipateId=" + challengeParticipateId + ", index=" + idx
 				+ ", content=" + content + ", check=" + check + ", createdAt=" + createdAt + ", img=" + img + "]";
 	}
 

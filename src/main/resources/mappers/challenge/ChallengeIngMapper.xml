@@ -3,20 +3,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.challenge.ChallengeIngDao">
-	<insert id="insert" parameterType="ChallengeIng" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO Challenge_ing
-		(Challenge_participate_id, index, content, check, img)
-		VALUES
-		(#{challengeParticipateId}, #{index}, #{content}, #{check}, #{img})
+	<insert id="insert" parameterType="ChallengeIng">
+		INSERT INTO challenge_ing
+		(Challenge_participate_id, idx, content, created_at, img)
+		values
+		(#{challengeParticipateId}, #{idx}, #{content}, now(), #{img})
 	</insert>
 	<update id="update" parameterType="ChallengeIng">
 		UPDATE Challenge_ing
 		SET 
-			Challenge_participate_id = #{ChallengeParticipateId},
-			index = #{index},
+			Challenge_participate_id = #{challengeParticipateId},
+			idx = #{idx},
 			content = #{content},
 			check = #{check},
-			img = #{img},
+			img = #{img}
 		WHERE id = #{id}
 	</update>
 	<select id="selectAll" resultType="ChallengeIng">
@@ -30,6 +30,6 @@
 		SELECT * FROM Challenge_ing WHERE user_id = #{userId}
 	</select>
 	<select id="selectByChallengeParticipateId" parameterType="int" resultType="ChallengeIng">
-		SELECT * FROM Challenge_ing WHERE Challenge_participate_id = #{id}
+		SELECT * FROM Challenge_ing WHERE Challenge_participate_id = #{id} ORDER BY idx
 	</select>
 </mapper>
