@@ -8,12 +8,12 @@ public class BoardReview {
 	private String userId;
 	private String userNickname;
 	private String content;
-	private Date createdAt;
+	private String createdAt;
 
 	public BoardReview() {
 	}
 
-	public BoardReview(int id, int boardId, String userId, String content, Date createdAt) {
+	public BoardReview(int id, int boardId, String userId, String content, String createdAt) {
 		super();
 		this.id = id;
 		this.boardId = boardId;
@@ -62,11 +62,11 @@ public class BoardReview {
 		this.content = content;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

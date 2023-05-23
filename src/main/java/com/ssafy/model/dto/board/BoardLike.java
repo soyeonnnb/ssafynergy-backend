@@ -5,12 +5,12 @@ import java.sql.Date;
 public class BoardLike {
 	private String userId;
 	private int boardId;
-	private Date createdAt;
+	private String createdAt;
 	
 	public BoardLike() {
 	}
 
-	public BoardLike(String userId, int boardId, Date createdAt) {
+	public BoardLike(String userId, int boardId, String createdAt) {
 		super();
 		this.userId = userId;
 		this.boardId = boardId;
@@ -38,11 +38,11 @@ public class BoardLike {
 		this.boardId = boardId;
 	}
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

@@ -1,18 +1,16 @@
 package com.ssafy.model.dto.challenge;
 
-import java.sql.Date;
-
 public class ChallengeLike{
 	private String userId;
 	private int challengeId;
-	private Date createdAt;
+	private String createdAt;
 	
 	
 	public ChallengeLike() {
 	}
 
 
-	public ChallengeLike(String userId, int challengeId, Date createdAt) {
+	public ChallengeLike(String userId, int challengeId, String createdAt) {
 		super();
 		this.userId = userId;
 		this.challengeId = challengeId;
@@ -40,12 +38,12 @@ public class ChallengeLike{
 	}
 
 
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 
