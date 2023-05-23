@@ -32,4 +32,14 @@
 	<select id="selectByChallengeParticipateId" parameterType="int" resultType="ChallengeIng">
 		SELECT * FROM Challenge_ing WHERE Challenge_participate_id = #{id} ORDER BY idx
 	</select>
+	<select id="selectByChallengeIdAndUserId" parameterType="ChallengeParticipate" resultType="int">
+		SELECT count(challenge_ing.id) 
+		FROM challenge_ing, challenge_participate 
+		WHERE 
+		challenge_ing.challenge_participate_id = challenge_participate.id 
+		and
+		challenge_participate.user_id = #{userId}
+		and 
+		challenge_participate.challenge_id = #{challengeId}
+	</select>
 </mapper>

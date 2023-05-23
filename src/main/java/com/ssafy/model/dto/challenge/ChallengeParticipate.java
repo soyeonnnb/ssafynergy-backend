@@ -19,7 +19,11 @@ public class ChallengeParticipate {
 		this.participatedDate = participatedDate;
 	}
 
-	
+	public ChallengeParticipate(String userId, int challengeId) {
+		this.userId = userId;
+		this.challengeId = challengeId;
+	}
+
 
 	public int getId() {
 		return id;

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.model.dto.challenge.Challenge;
 import com.ssafy.model.dto.challenge.ChallengeParticipate;
+import com.ssafy.model.service.challenge.ChallengeIngService;
 import com.ssafy.model.service.challenge.ChallengeParticipateService;
 import com.ssafy.util.JwtUtil;
 
@@ -32,8 +33,12 @@ import io.swagger.annotations.ApiOperation;
 public class ChallengeParticipateController {
 	@Autowired
 	private ChallengeParticipateService cs;
+	
 	@Autowired
 	private JwtUtil jwtUtil;
+	
+	@Autowired
+	private ChallengeIngService challengeIngService;
 
 	@PostMapping("")
 	@ApiOperation(value = "챌린지 신청을 한다")
@@ -81,6 +86,11 @@ public class ChallengeParticipateController {
 		try {
 			String userId = (String) jwtUtil.parseToken(token).get("id");
 			cp.setUserId(userId);
+			// ing가 있는지 확인
+			int exists = challengeIngService.selectByChallengeIdAndUserId(new ChallengeParticipate(userId, id));
+			if (exists != 0) {
+				return new ResponseEntity<>("FAIL", HttpStatus.BAD_REQUEST);
+			}
 			cs.delete(cp);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException

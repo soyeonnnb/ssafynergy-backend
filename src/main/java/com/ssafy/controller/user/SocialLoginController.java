@@ -1,5 +1,9 @@
 package com.ssafy.controller.user;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.model.dto.user.User;
 import com.ssafy.model.service.user.SocialLoginService;
 import com.ssafy.model.service.user.UserService;
+import com.ssafy.util.JwtUtil;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -28,13 +33,14 @@ public class SocialLoginController {
 	@Autowired
 	private UserService us;
 	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
 	@GetMapping("/kakao/oauth")
-	public ResponseEntity<?> kakaoLogin(HttpSession session, @RequestParam(required = false) String code ){
+	public ResponseEntity<?> kakaoLogin(@RequestParam(required = false) String code ){
 		// 만약 사용자가 로그인 취소를 눌렀다면
 		if (code == null) {
-			System.out.println("null");
 			return new ResponseEntity<String>("codeError",HttpStatus.BAD_REQUEST);
-//			return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 		}
 		String accessToken = sls.kakaoGetToken(code);
 		User user = sls.kakaoGetUserInfo(accessToken);
@@ -50,9 +56,23 @@ public class SocialLoginController {
 			}
 		}
 		dbUser.setPassword("");
-		// 로그인까지 시켜줌
-		session.setAttribute("loginUser", dbUser);
-		return new ResponseEntity<User>(dbUser, HttpStatus.ACCEPTED);
+		// 로그인
+		Map<String, Object> result = new HashMap<String, Object>();
+		HttpStatus status = null;
+		try {
+				result.put("access-token", jwtUtil.createToken("id", user.getId()));
+				result.put("message", "success");
+				dbUser.setPassword("");
+				result.put("loginUser", dbUser);
+				status = HttpStatus.ACCEPTED;
+		} catch (UnsupportedEncodingException e) {
+			result.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(result, status);
+		
+		
+//		return new ResponseEntity<User>(dbUser, HttpStatus.ACCEPTED);
 		
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.model.dao.challenge.ChallengeIngDao;
 import com.ssafy.model.dto.challenge.ChallengeIng;
+import com.ssafy.model.dto.challenge.ChallengeParticipate;
 
 @Service
 public class ChallengeIngServiceImpl implements ChallengeIngService{
@@ -42,6 +43,11 @@ public class ChallengeIngServiceImpl implements ChallengeIngService{
 	@Override
 	public List<ChallengeIng> selectByChallengeParticipateId(int id) {
 		return cd.selectByChallengeParticipateId(id);
+	}
+
+	@Override
+	public int selectByChallengeIdAndUserId(ChallengeParticipate cp) {
+		return cd.selectByChallengeIdAndUserId(cp);
 	}
 
 }
