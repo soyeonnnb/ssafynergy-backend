@@ -60,11 +60,13 @@ public class SearchCondition {
 	    this.difficulty = difficulty;
 	  }
 
-	  public boolean isPossibility() {
+	  public boolean getPossibility() {
 	    return possibility;
 	  }
 
 	  public void setPossibility(boolean possibility) {
 	    this.possibility = possibility;
 	  }
+
+	  
 }
