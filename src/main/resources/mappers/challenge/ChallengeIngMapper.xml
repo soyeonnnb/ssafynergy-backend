@@ -7,7 +7,7 @@
 		INSERT INTO Challenge_ing
 		(Challenge_participate_id, index, content, check, img)
 		VALUES
-		(#{ChallengeParticipateId}, #{index}, #{content}, #{check}, #{img})
+		(#{challengeParticipateId}, #{index}, #{content}, #{check}, #{img})
 	</insert>
 	<update id="update" parameterType="ChallengeIng">
 		UPDATE Challenge_ing
@@ -27,6 +27,9 @@
 		WHERE id = #{id}
 	</delete>
 	<select id="search" parameterType="String" resultType="ChallengeIng">
-		SELECT * FROM Challenge_ing WHERE userId = #{userId}
+		SELECT * FROM Challenge_ing WHERE user_id = #{userId}
+	</select>
+	<select id="selectByChallengeParticipateId" parameterType="int" resultType="ChallengeIng">
+		SELECT * FROM Challenge_ing WHERE Challenge_participate_id = #{id}
 	</select>
 </mapper>

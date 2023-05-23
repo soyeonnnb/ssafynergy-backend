@@ -19,6 +19,8 @@ public class ChallengeParticipate {
 		this.participatedDate = participatedDate;
 	}
 
+	
+
 	public int getId() {
 		return id;
 	}

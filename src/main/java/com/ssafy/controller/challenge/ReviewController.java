@@ -51,7 +51,7 @@ public class ReviewController {
 	@ApiOperation(value = "챌린지{id}별 리뷰 목록을 조회한다.")
 	public ResponseEntity<List<Review>> searchChallengeReview(@PathVariable int id) {
 		List<Review> list = rs.searchChallengeReview(id);
-		System.out.println("ddddl"+list);
+//		System.out.println("ddddl"+list);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {

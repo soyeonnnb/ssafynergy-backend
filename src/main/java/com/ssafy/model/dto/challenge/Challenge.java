@@ -13,12 +13,12 @@ public class Challenge {
 	private boolean publicType;         // 공개여부
 	private int challengeDifficultyId;  // 인트로 줬네.... 일단 쉬움1 보통2 어려움3 
 	private int opportunity;
-	private boolean isGiveup;
 	private int participateCnt;
 	private int likeCnt;
 	private int reviewCnt;
 	private int totalDay;
-	
+	private int challengeParticipateId;
+
 	public Challenge() {
 	}
 
@@ -36,7 +36,6 @@ public class Challenge {
 		this.publicType = publicType;
 		this.challengeDifficultyId = challengeDifficultyId;
 		this.opportunity = opportunity;
-		this.isGiveup = isGiveup;
 		this.participateCnt = participateCnt;
 		this.likeCnt = likeCnt;
 		this.reviewCnt = reviewCnt;
@@ -123,13 +122,6 @@ public class Challenge {
 		this.opportunity = opportunity;
 	}
 
-	public boolean getIsGiveup() {
-		return isGiveup;
-	}
-
-	public void setIsGiveup(boolean isGiveup) {
-		this.isGiveup = isGiveup;
-	}
 
 	public int getParticipateCnt() {
 		return participateCnt;
@@ -163,13 +155,14 @@ public class Challenge {
 		this.totalDay = totalDay;
 	}
 
-	@Override
-	public String toString() {
-		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
-				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
-				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
-				+ opportunity + ", isGiveup=" + isGiveup + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt
-				+ ", reviewCnt=" + reviewCnt + ", totalDay=" + totalDay + "]";
+	
+	public int getChallengeParticipateId() {
+		return challengeParticipateId;
 	}
+
+	public void setChallengeParticipateId(int challengeParticipateId) {
+		this.challengeParticipateId = challengeParticipateId;
+	}
+
 
 }

@@ -2,6 +2,7 @@ package com.ssafy.model.service.challenge;
 
 import java.util.List;
 
+import com.ssafy.model.dto.challenge.Challenge;
 import com.ssafy.model.dto.challenge.ChallengeParticipate;
 
 public interface ChallengeParticipateService {
@@ -11,7 +12,9 @@ public interface ChallengeParticipateService {
 	
 	int update(ChallengeParticipate challengeParticipate);
 	
-	List<ChallengeParticipate> search(String userId);
+	List<Challenge> search(String userId);
+	
+	boolean isParticipate(ChallengeParticipate challengeParticipate);
 	
 	List<ChallengeParticipate> getParticipatedPersonNum(int challengeId);
 }

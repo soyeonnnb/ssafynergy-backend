@@ -46,7 +46,7 @@
 		FROM Board
 		<if test="key != 'none' or hasUserId or hasBoardCategoryId">WHERE </if>
 		<if test="key != 'none' ">
-			${key} LIKE CONCAT('%', #{word}, '%')
+			${key} LIKE CONCAT('%', #{content}, '%')
 		</if>
 		<if test="key != 'none' and hasUserId">
 			and

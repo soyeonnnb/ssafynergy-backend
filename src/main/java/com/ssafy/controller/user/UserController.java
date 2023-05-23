@@ -101,7 +101,7 @@ public class UserController {
 				res.getFile().mkdir();
 			if (img != null && img.getSize() > 0) {
 				filePath = System.currentTimeMillis() + "_" + img.getOriginalFilename();
-				System.out.println(filePath);
+//				System.out.println(filePath);
 				img.transferTo(new File(res.getFile().getCanonicalPath() + "/" + filePath));
 				return new  ResponseEntity<String>(filePath, HttpStatus.OK);
 			}
@@ -114,7 +114,7 @@ public class UserController {
 
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, Object>> login(HttpSession session, @RequestBody User user) {
+	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = null;
 		try {
@@ -124,8 +124,6 @@ public class UserController {
 				result.put("access-token", jwtUtil.createToken("id", user.getId()));
 				result.put("message", SUCCESS);
 				dbUser.setPassword("");
-				System.out.println((User) session.getAttribute("loginUser"));
-				session.setAttribute("loginUser", dbUser);
 				result.put("loginUser", dbUser);
 				status = HttpStatus.ACCEPTED;
 			} else {

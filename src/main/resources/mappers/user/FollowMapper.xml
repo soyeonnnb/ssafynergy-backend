@@ -3,6 +3,22 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.user.FollowDao">
-
-	
+	<select id="selectByFollowerId" parameterType="String"
+		resultType="User">
+		SELECT user.id as id, user.nickname as nickname FROM user, follow where user.id = follow.follow_user_id and follow.user_id = #{id}
+	</select>
+	<select id="selectByFollowingId" parameterType="String"
+		resultType="User">
+		SELECT user.id as id, user.nickname as nickname FROM user, follow where user.id = follow.user_id and follow.follow_user_id = #{id}
+	</select>
+	<insert id="insertFollow" parameterType="Follow">
+		INSERT INTO follow 
+		VALUES (#{userId}, #{followUserId}, now())
+	</insert>
+	<delete id="deleteFollow" parameterType="Follow">
+		DELETE FROM follow WHERE user_id=#{userId} and follow_user_id=#{followUserId}
+	</delete>
+	<select id="selectOne" parameterType="Follow" resultType="Follow">
+		SELECT * FROM follow WHERE user_id=#{userId} and follow_user_id=#{followUserId}
+	</select>
 </mapper>
