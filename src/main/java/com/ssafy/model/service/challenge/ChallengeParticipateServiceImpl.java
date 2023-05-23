@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.model.dao.challenge.ChallengeParticipateDao;
+import com.ssafy.model.dto.challenge.Challenge;
 import com.ssafy.model.dto.challenge.ChallengeParticipate;
 
 @Service
@@ -30,7 +31,7 @@ public class ChallengeParticipateServiceImpl implements ChallengeParticipateServ
 	}
 
 	@Override
-	public List<ChallengeParticipate> search(String userId) {
+	public List<Challenge> search(String userId) {
 		return cd.search(userId);
 	}
 

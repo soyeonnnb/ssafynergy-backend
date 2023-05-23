@@ -101,7 +101,7 @@ public class UserController {
 				res.getFile().mkdir();
 			if (img != null && img.getSize() > 0) {
 				filePath = System.currentTimeMillis() + "_" + img.getOriginalFilename();
-				System.out.println(filePath);
+//				System.out.println(filePath);
 				img.transferTo(new File(res.getFile().getCanonicalPath() + "/" + filePath));
 				return new  ResponseEntity<String>(filePath, HttpStatus.OK);
 			}

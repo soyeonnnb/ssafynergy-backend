@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge` (
   `public_type` TINYINT NOT NULL DEFAULT 0,
   `challenge_difficulty_id` INT NOT NULL,
   `opportunity` INT NOT NULL DEFAULT 1,
-  `is_giveup` TINYINT NOT NULL DEFAULT 0,
+  `total_day` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`, `challenge_difficulty_id`),
   INDEX `fk_Challenge_challenge_difficulty1_idx` (`challenge_difficulty_id` ASC) VISIBLE,
   CONSTRAINT `fk_Challenge_challenge_difficulty1`
@@ -110,13 +110,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge` (
 ENGINE = InnoDB;
 
 INSERT INTO challenge
-VALUES(0, '미라클챌린지', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-	(0, '인기1', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-    (0, '인기2', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-    (0, '인기3', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-    (0, '인기4', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-    (0, '인기5', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 ),
-    (0, '인기6', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 0 );
+VALUES(0, '미라클챌린지', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 1 ),
+	(0, '인기1', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 3  ),
+    (0, '인기2', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 5  ),
+    (0, '인기3', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 6  ),
+    (0, '인기4', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 10 ),
+    (0, '인기5', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 11 ),
+    (0, '인기6', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 13 );
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Challenge_participate`
@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_participate` (
   `User_id` VARCHAR(30) NOT NULL,
   `Challenge_id` INT NOT NULL,
   `participated_date` DATETIME NOT NULL,
+  `is_giveup` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_User_has_Challenge_Challenge1_idx` (`Challenge_id` ASC) VISIBLE,
   INDEX `fk_User_has_Challenge_User1_idx` (`User_id` ASC) VISIBLE,
@@ -142,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_participate` (
 ENGINE = InnoDB;
 
 INSERT INTO challenge_participate
-VALUES(0, 'ssafy1', 0, now());
+VALUES(0, 'ssafy1', 0, now(), 0);
 
 
 -- -----------------------------------------------------

@@ -8,6 +8,7 @@ public interface ChallengeIngDao {
 	int insert(ChallengeIng challengeIng);
 	int update(ChallengeIng challengeIng);
 	List<ChallengeIng> selectAll();
+	List<ChallengeIng> selectByChallengeParticipateId(int id);
 	int delete(int id);
 	List<ChallengeIng> search(String userId);	
 }	

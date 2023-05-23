@@ -22,7 +22,7 @@
 	</update>
 	<select id="search" parameterType="SearchCondition" resultType="Challenge">
 		SELECT id, name, created_at, start_at, finish_at, description,
-			limit_person_num, public_type, challenge_difficulty_id, opportunity, is_giveup,
+			limit_person_num, public_type, challenge_difficulty_id, opportunity, 
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
 			(select count(*) from review where challenge_id = challenge.id) as reviewCnt
@@ -36,7 +36,7 @@
 	</select>
 	<select id="select" parameterType="int" resultType="Challenge">
 		SELECT id, name, created_at, start_at, finish_at, description,
-			limit_person_num, public_type, challenge_difficulty_id, opportunity, is_giveup,
+			limit_person_num, public_type, challenge_difficulty_id, opportunity, 
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
 			(select count(*) from review where challenge_id = challenge.id) as reviewCnt

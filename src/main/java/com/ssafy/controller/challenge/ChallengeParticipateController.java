@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.model.dto.challenge.Challenge;
 import com.ssafy.model.dto.challenge.ChallengeParticipate;
 import com.ssafy.model.service.challenge.ChallengeParticipateService;
 import com.ssafy.util.JwtUtil;
@@ -36,7 +37,8 @@ public class ChallengeParticipateController {
 
 	@PostMapping("")
 	@ApiOperation(value = "챌린지 신청을 한다")
-	public ResponseEntity<?> insert(@RequestHeader("access-token") String token, @RequestBody ChallengeParticipate challengeParticipate) {
+	public ResponseEntity<?> insert(@RequestHeader("access-token") String token,
+			@RequestBody ChallengeParticipate challengeParticipate) {
 		try {
 			String userId = (String) jwtUtil.parseToken(token).get("id");
 			challengeParticipate.setUserId(userId);
@@ -50,7 +52,7 @@ public class ChallengeParticipateController {
 			return new ResponseEntity<>("FAIL", HttpStatus.BAD_GATEWAY);
 		}
 	}
-	
+
 	@GetMapping("/challenge/{id}")
 	@ApiOperation(value = "챌린지를 신청했는지 확인한다.")
 	public ResponseEntity<String> isParticipate(@RequestHeader("access-token") String token, @PathVariable int id) {
@@ -102,17 +104,15 @@ public class ChallengeParticipateController {
 				| IllegalArgumentException | UnsupportedEncodingException e) {
 			return new ResponseEntity<>("FAIL", HttpStatus.BAD_GATEWAY);
 		}
-		
+
 	}
+
 	// 아마도 여길 바꿔야할듯
-	@GetMapping("")
+	@GetMapping("/list/{id}")
 	@ApiOperation(value = "나의 챌린지 목록을 조회한다.")
-	public ResponseEntity<?> selectId(String userId) {
-		List<ChallengeParticipate> list = cs.search(userId);
-		if (list.size() == 0) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} else {
-			return new ResponseEntity<List<ChallengeParticipate>>(list, HttpStatus.OK);
-		}
+	public ResponseEntity<?> selectId(@PathVariable String id) {
+		List<Challenge> list = cs.search(id);
+		return new ResponseEntity<List<Challenge>>(list, HttpStatus.OK);
+
 	}
 }

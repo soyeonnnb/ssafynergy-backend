@@ -39,4 +39,9 @@ public class ChallengeIngServiceImpl implements ChallengeIngService{
 		return cd.search(userId);
 	}
 
+	@Override
+	public List<ChallengeIng> selectByChallengeParticipateId(int id) {
+		return cd.selectByChallengeParticipateId(id);
+	}
+
 }

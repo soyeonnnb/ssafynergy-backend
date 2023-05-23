@@ -27,6 +27,7 @@ public class ChallengeIngController {
 
 	@Autowired
 	private ChallengeIngService cs;
+	
 
 	@PostMapping("/{id}")
 	@ApiOperation(value = "당일의 챌린지 현황을 등록한다.")
@@ -43,9 +44,9 @@ public class ChallengeIngController {
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "전체회원에 대한 현황 목록을 조회한다.")
+	@ApiOperation(value = "해당 챌린지에 대한 현황 목록을 조회한다.")
 	public ResponseEntity<List<ChallengeIng>> seleteAll(@PathVariable int id) {
-		List<ChallengeIng> list = cs.selectAll();
+		List<ChallengeIng> list = cs.selectByChallengeParticipateId(id);
 		if (list.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {

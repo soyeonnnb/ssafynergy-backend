@@ -13,11 +13,19 @@ public class Challenge {
 	private boolean publicType;
 	private int challengeDifficultyId;
 	private int opportunity;
-	private boolean isGiveup;
 	private int participateCnt;
 	private int likeCnt;
 	private int reviewCnt;
+	private int challengeParticipateId;
 	
+	public int getChallengeParticipateId() {
+		return challengeParticipateId;
+	}
+
+	public void setChallengeParticipateId(int challengeParticipateId) {
+		this.challengeParticipateId = challengeParticipateId;
+	}
+
 	public Challenge() {
 	}
 
@@ -35,7 +43,6 @@ public class Challenge {
 		this.publicType = publicType;
 		this.challengeDifficultyId = challengeDifficultyId;
 		this.opportunity = opportunity;
-		this.isGiveup = isGiveup;
 		this.participateCnt = participateCnt;
 		this.likeCnt = likeCnt;
 		this.reviewCnt = reviewCnt;
@@ -121,13 +128,7 @@ public class Challenge {
 		this.opportunity = opportunity;
 	}
 
-	public boolean isGiveup() {
-		return isGiveup;
-	}
-
-	public void setGiveup(boolean isGiveup) {
-		this.isGiveup = isGiveup;
-	}
+	
 
 	
 	
@@ -160,17 +161,11 @@ public class Challenge {
 		return "Challenge [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", startAt=" + startAt
 				+ ", finishAt=" + finishAt + ", description=" + description + ", limitPersonNum=" + limitPersonNum
 				+ ", publicType=" + publicType + ", challengeDifficultyId=" + challengeDifficultyId + ", opportunity="
-				+ opportunity + ", isGiveup=" + isGiveup + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt
-				+ ", reviewCnt=" + reviewCnt + ", getId()=" + getId() + ", getName()=" + getName() + ", getCreatedAt()="
-				+ getCreatedAt() + ", getStartAt()=" + getStartAt() + ", getFinishAt()=" + getFinishAt()
-				+ ", getDescription()=" + getDescription() + ", getLimitPersonNum()=" + getLimitPersonNum()
-				+ ", isPublicType()=" + isPublicType() + ", getChallengeDifficultyId()=" + getChallengeDifficultyId()
-				+ ", getOpportunity()=" + getOpportunity() + ", isGiveup()=" + isGiveup() + ", getParticipateCnt()="
-				+ getParticipateCnt() + ", getLikeCnt()=" + getLikeCnt() + ", getReviewCnt()=" + getReviewCnt()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ opportunity + ", participateCnt=" + participateCnt + ", likeCnt=" + likeCnt + ", reviewCnt="
+				+ reviewCnt + "]";
 	}
 
+	
 	
 	
 }

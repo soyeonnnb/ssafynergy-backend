@@ -2,27 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.model.dao.challenge.ChallengeParticipateDao">
-	<insert id="insert" parameterType="ChallengeParticipate" keyProperty="id" useGeneratedKeys="true">
+<mapper
+	namespace="com.ssafy.model.dao.challenge.ChallengeParticipateDao">
+	<insert id="insert" parameterType="ChallengeParticipate"
+		keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Challenge_participate
-		(User_id, Challenge_id, participated_date)
+		(id, User_id, Challenge_id, participated_date)
 		VALUES
-		(#{userId}, #{challengeId}, now())
+		(0, #{userId},
+		#{challengeId}, now())
 	</insert>
-	<delete id = "delete" parameterType="int">
-		DELETE FROM Challenge_participate
-		WHERE User_id = #{userId} and Challenge_id = #{challengeId}
+	<delete id="delete" parameterType="ChallengeParticipate">
+		DELETE FROM
+		Challenge_participate
+		WHERE user_id = #{userId} and challenge_id =
+		#{challengeId}
 	</delete>
 	<update id="update" parameterType="ChallengeParticipate">
 		UPDATE Challenge
-		SET 
-			is_giveup = true
+		SET
+		is_giveup =
+		true
 		WHERE User_id = #{userId} and Challenge_id = #{challengeId}
 	</update>
-	<select id="select" parameterType="String" resultType="ChallengeParticipate">
-		SELECT * FROM Challenge_participate WHERE user_id=#{userId}
+	<select id="select" parameterType="String"
+		resultType="Challenge">
+		SELECT * FROM challenge, Challenge_participate WHERE
+		challenge.id = challenge_participate.challenge_id and
+		challenge_participate.user_id=#{userId}
 	</select>
-	<select id="isParticipated" parameterType="ChallengeParticipate" resultType="ChallengeParticipate">
-		SELECT * FROM Challenge_participate WHERE user_id = #{userId} and challenge_id = #{challengeId}
+	<select id="isParticipated" parameterType="ChallengeParticipate"
+		resultType="ChallengeParticipate">
+		SELECT * FROM Challenge_participate WHERE user_id =
+		#{userId} and challenge_id = #{challengeId}
+	</select>
+	<select id="search" parameterType="String"
+		resultType="Challenge">
+		SELECT
+		challenge.id as id,
+		challenge.name as name,
+		challenge.created_at as createdAt,
+		challenge.start_at as startAt,
+		challenge.finish_At as finishAt,
+		challenge.description as description,
+		challenge_participate.id as challengeParticipateId
+		FROM challenge,
+		Challenge_participate WHERE challenge.id =
+		challenge_participate.challenge_id and
+		challenge_participate.user_id=#{userId};
 	</select>
 </mapper>
