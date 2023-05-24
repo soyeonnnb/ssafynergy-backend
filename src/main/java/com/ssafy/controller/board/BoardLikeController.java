@@ -42,7 +42,6 @@ public class BoardLikeController {
 		try {
 			String userId = (String) jwtUtil.parseToken(token).get("id");
 			boardLike.setUserId(userId);
-			System.out.println(boardLike);
 			bs.insert(boardLike);
 			return new ResponseEntity<BoardLike>(boardLike, HttpStatus.CREATED);
 		} catch (SignatureException | ExpiredJwtException | UnsupportedJwtException | MalformedJwtException
