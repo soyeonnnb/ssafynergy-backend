@@ -13,5 +13,5 @@ public interface ReviewService {
 	
 	List<Review> searchChallengeReview(int id);
 	
-	List<Review> searchUserReview(String userId);
+	Review searchUserReview(int challengeId, String userId);
 }
