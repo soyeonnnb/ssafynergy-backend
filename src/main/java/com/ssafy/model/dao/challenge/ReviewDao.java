@@ -9,5 +9,5 @@ public interface ReviewDao {
 	int update(Review review);
 	int delete(int id);
 	List<Review> searchChallengeReview(int id);
-	List<Review> searchUserReview(String userId);
+	Review searchUserReview(int challengeId, String userId);
 }

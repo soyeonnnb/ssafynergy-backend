@@ -5,15 +5,16 @@
 <mapper namespace="com.ssafy.model.dao.challenge.ReviewDao">
 	<insert id="insert" parameterType="Review" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Review
-		(title, content, Challenge_id, User_id, rating)
+		(title, content, created_at, Challenge_id, User_id, rating)
 		VALUES
-		(#{title}, #{content}, #{challengeId}, #{userId}, #{rating})
+		(#{title}, #{content}, now(), #{challengeId}, #{userId}, #{rating})
 	</insert>
 	<update id="update" parameterType="Review">
 		UPDATE Review
 		SET 
 			title = #{title},
 			content = #{content},
+			created_at = #{createdAt}
 			Challenge_id = #{challengeId},
 			User_id = #{userId}
 			rating = #{rating}
@@ -24,9 +25,11 @@
 		WHERE id = #{id}
 	</delete>
 	<select id="searchChallengeReview" parameterType="int" resultType="Review">
-		SELECT * FROM Review WHERE challenge_id=#{challengeId}
+		SELECT * FROM Review WHERE Challenge_id=#{challengeId}
 	</select>
-	<select id="searchUserReview" parameterType="String" resultType="Review">
-		SELECT * FROM Review WHERE user_id=#{userId}
+	<select id="searchUserReview" resultType="Review">
+	    SELECT * FROM Review 
+	    WHERE User_id=#{userId} AND Challenge_id=#{challengeId}
 	</select>
+
 </mapper>

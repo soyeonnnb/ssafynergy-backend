@@ -35,8 +35,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Review> searchUserReview(String userId) {
-		return rd.searchUserReview(userId);
+	public Review searchUserReview(int challengeId, String userId) {
+		return rd.searchUserReview(challengeId, userId);
 	}
 
 }

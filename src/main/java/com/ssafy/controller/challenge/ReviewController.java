@@ -60,12 +60,12 @@ public class ReviewController {
 
 	@GetMapping("/channel/challenge/{challengeId}")
 	@ApiOperation(value = "유저{userId}가 챌린지{challengeId}에 작성한 리뷰를 조회한다.")
-	public ResponseEntity<List<Review>> searchUserReview(@PathVariable int challengeId) {
-		List<Review> list = rs.searchChallengeReview(challengeId);
-		if (list.size() == 0) {
+	public ResponseEntity<Review> searchUserReview(@PathVariable int challengeId, String userId) {
+		Review review = rs.searchUserReview(challengeId, userId);
+		if (review == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
-			return new ResponseEntity<List<Review>>(list, HttpStatus.OK);
+			return new ResponseEntity<Review>(review, HttpStatus.OK);
 		}
 	}
 
