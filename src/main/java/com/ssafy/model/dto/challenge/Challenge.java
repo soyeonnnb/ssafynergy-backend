@@ -13,11 +13,28 @@ public class Challenge {
 	private int opportunity;
 	private int participateCnt;
 	private int likeCnt;
+	private String img;
 	private int reviewCnt;
 	private int totalDay;
 	private int challengeParticipateId;
 
 	public Challenge() {
+	}
+
+	public boolean isPublicType() {
+		return publicType;
+	}
+
+	public void setPublicType(boolean publicType) {
+		this.publicType = publicType;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public Challenge(int id, String name, String createdAt, String startAt, String finishAt, String description,

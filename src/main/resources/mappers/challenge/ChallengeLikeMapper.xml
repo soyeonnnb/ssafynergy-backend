@@ -27,8 +27,10 @@
 		challenge.start_at, challenge.finish_at, challenge.description,
 		challenge.limit_person_num, challenge.public_type,
 		challenge.challenge_difficulty_id,
-		challenge.opportunity,challenge.total_day
-		FROM challenge,
+		challenge.opportunity,challenge.total_day,challenge.img as
+		img
+		FROM
+		challenge,
 		Challenge_Like WHERE challenge.id =
 		challenge_like.challenge_id and
 		user_id = #{userId}

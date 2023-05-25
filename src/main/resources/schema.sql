@@ -67,7 +67,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Follow` (
 ENGINE = InnoDB;
 
 INSERT INTO follow
-VALUES ('ssafy1', 'ssafy2',now());
+VALUES ('ssafy1', 'ssafy2',now()),
+('ssafy1', 'admin',now()),
+('ssafy1', 'junghun',now()),
+('ssafy1', 'soyeon',now()),
+('admin', 'junghun',now()),
+('admin', 'soyeon',now()),
+('ssafy2', 'admin',now());
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`challenge_difficulty`
@@ -111,13 +117,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge` (
 ENGINE = InnoDB;
 
 INSERT INTO challenge
-VALUES(0, '미라클챌린지', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 1, '1.png' ),
-    (0, '인기1', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 2, 3, 3, "2.png" ),
-    (0, '인기2', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 3, 3, 5, '3.png'  ),
-    (0, '인기3', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 6, '4.png'  ),
-    (0, '인기4', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 2, 3, 10, '5.png' ),
-    (0, '인기5', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 3, 3, 11, '6.png' ),
-    (0, '인기6', now(), '2023-06-01', '2023-06-30', '미라클챌린지입니다.', 60, 0, 1, 3, 13, '7.png' );
+VALUES(0, '미라클 모닝 챌린지2', now(), '2023-06-01', '2023-06-30', '하루를 일찍 시작하자! 미라클 모닝!', 50, 1, 3, 3, 30, '1.jpg' ),
+    (0, '30분 유산소', now(), '2023-05-01', '2023-05-15', '매일 같은 시간에 30분씩 유산소운동!', 20, 1, 2, 1, 15, "2.jpg" ),
+    (0, '매일 헬스장 출석', now(), '2023-05-01', '2023-05-31', '매일 헬스장 출석하는 챌린지입니다.', 100, 1, 3, 5, 31, '3.jpg'  ),
+    (0, '1주일 스쿼트 챌린지', now(), '2023-05-05', '2023-05-11', '어린이날 기념, 1주일 스쿼트 챌린지!', 30, 1, 1, 0, 7, '4.jpg'  ),
+    (0, '30분 유산소 2', now(), '2023-05-16', '2023-05-31', '매일 같은 시간에 30분씩 유산소운동!', 20, 1, 2, 1, 16, '5.jpg' ),
+    (0, '미라클 모닝 챌린지', now(), '2023-05-01', '2023-05-31', '하루를 일찍 시작하자! 미라클 모닝!', 50, 1, 3, 3, 31, '6.jpg' ),
+    (0, '10일 플랭크 챌린지', now(), '2023-05-22', '2023-05-31', '5월 마지막주, 10일간의 플랭크 챌린지!', 30, 1, 1, 2, 10, '7.jpg' );
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Challenge_participate`
@@ -151,7 +157,14 @@ VALUES(0, 'ssafy1', 1, now(), 0),
 (0, 'admin', 3, now(), 0),
 (0, 'admin', 4, now(), 0),
 (0, 'admin', 5, now(), 0),
-(0, 'admin', 6, now(), 0);
+(0, 'admin', 6, now(), 0),
+(0, 'admin', 7, now(), 0),
+(0, 'junghun', 1, now(), 0),
+(0, 'junghun', 3, now(), 0),
+(0, 'junghun', 5, now(), 0),
+(0, 'soyeon', 2, now(), 0),
+(0, 'soyeon', 4, now(), 0),
+(0, 'soyeon', 6, now(), 0);
 
 
 -- -----------------------------------------------------
@@ -183,26 +196,8 @@ VALUES (0, 0, 1, '화이팅1', 1, now(), "temp.png"),
 (0, 0, 6, '화이팅6', 1, now(),  "temp.png"),
 (0, 0, 7, '화이팅7', 1, now(),  "temp.png");
 
--- -----------------------------------------------------
--- Table `ssafynergy`.`Challenge_content`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_content` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `Challenge_id` INT NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `index` INT NOT NULL,
-  `content` TEXT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Challenge_content_Challenge1_idx` (`Challenge_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Challenge_content_Challenge1`
-    FOREIGN KEY (`Challenge_id`)
-    REFERENCES `ssafynergy`.`Challenge` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
+-----------------------------------------------------
 -- Table `ssafynergy`.`Challenge_Like`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ssafynergy`.`Challenge_Like` (
@@ -259,11 +254,19 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Review` (
 ENGINE = InnoDB;
 
 INSERT INTO review
-VALUES (0, '제목1', '내용1', now(), 1, 'admin', 5),
-(0, '제목2', '내용2', now(), 2, 'admin', 4),
-(0, '제목3', '내용3', now(), 3, 'admin', 2),
-(0, '제목4', '내용4', now(), 4, 'admin', 1),
-(0, 'junghun', '하기싫어', now(), 2, 'junghun', 5);
+VALUES (0, '미라클 모닝 챌린지2 리뷰', '미라클 모닝 챌린지2 리뷰입니다', now(), 1, 'admin', 5),
+(0, '30분 유산소 리뷰', '30분 유산소 리뷰입니다.', now(), 2, 'admin', 4),
+(0, '매일 헬스장 출석 리뷰', '매일 헬스장 출석 리뷰 내용', now(), 3, 'admin', 2),
+(0, '1주일 스쿼트 챌린지', '1주일 스쿼트 챌린지 내용', now(), 4, 'admin', 1),
+(0, '1주일 스쿼트 챌린지', '1주일 스쿼트 챌린지 내용', now(), 5, 'admin', 1),
+(0, '미라클 모닝 챌린지를 참여했다', '너무 재밌땅', now(), 6, 'admin', 1),
+(0, '10일 플랭크 챌린지', '힘들다...', now(), 7, 'admin', 1),
+(0, '미라클 모닝 챌린지2는 너무 힘들어', '하기싫어', now(), 1, 'junghun', 4),
+(0, '매일 헬스장 출석은 너무 힘들어', '하기싫어', now(), 3, 'junghun', 4),
+(0, '30분 유산소 2는 너무 힘들어', '하기싫어', now(), 5, 'junghun', 4),
+(0, '30분 유산소는 너무 재밌어', '너무 재밌다!!', now(), 2, 'soyeon', 4),
+(0, '1주일 스쿼트 챌린지는 너무 좋아', '하하하', now(), 4, 'soyeon', 4),
+(0, '미라클 모닝 챌린지', '하기싫어', now(), 6, 'soyeon', 4);
 
 
 
@@ -288,6 +291,11 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Board_Category` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO board_category
+VALUES (0, '공지사항', 0, 0, 0, 1, 0, 1),
+(0, '자유게시판', 1, 1, 1, 1, 1, 1),
+(0, '문의답하기', 1, 1, 1, 1, 1, 1),
+(0, 'FAQ', 1, 1, 1, 1, 1, 1);
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Board`
@@ -315,6 +323,13 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Board` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO board
+VALUES (0, 'ssafynergy 공지사항 게시판입니다.', 'ssafynergy 공지사항 게시판 입니다.', now(), 'admin', 1, 190),
+(0, 'ssafynergy 자유게시판입니다.', 'ssafynergy 자유게시판입니다.', now(), 'admin', 2, 506),
+(0, '너무졸려요...', '자고 싶어요...', now(), 'junghun', 2, 33),
+(0, 'ssafynergy 문의사항 게시판입니다.', 'ssafynergy 문의사항 게시판입니다.', now(), 'admin', 3, 231),
+(0, 'ssafynergy FAQ 게시판입니다.', 'ssafynergy FAQ 게시판입니다.', now(), 'admin', 4, 77);
+
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Board_Review`
@@ -340,6 +355,8 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Board_Review` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO board_review
+VALUES (0, 3, 'soyeon', '나도....', now());
 
 -- -----------------------------------------------------
 -- Table `ssafynergy`.`Board_Like`
@@ -363,6 +380,11 @@ CREATE TABLE IF NOT EXISTS `ssafynergy`.`Board_Like` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO board_like
+VALUES ('admin', 1, now()),
+('ssafy1', 1, now()),
+('ssafy2', 1, now()),
+('junghun', 1, now());
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

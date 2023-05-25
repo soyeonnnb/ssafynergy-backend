@@ -45,7 +45,8 @@
 		challenge.start_at as startAt,
 		challenge.finish_At as finishAt,
 		challenge.description as description,
-		challenge_participate.id as challengeParticipateId
+		challenge_participate.id as challengeParticipateId, challenge.img as
+		img
 		FROM challenge,
 		Challenge_participate WHERE challenge.id =
 		challenge_participate.challenge_id and

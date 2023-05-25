@@ -29,8 +29,11 @@ public class ReviewController {
 	@PostMapping("/challenge/review")
 	@ApiOperation(value = "리뷰를 작성한다.")
 	public ResponseEntity<?> insert(@RequestBody Review review) {
+		if (rs.searchUserReview(review.getChallengeId(), review.getUserId())!=null) {
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		}
 		rs.insert(review);
-		return new ResponseEntity<Review>(review, HttpStatus.OK);
+		return new ResponseEntity<Review>(review, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/challenge/review")
@@ -58,9 +61,9 @@ public class ReviewController {
 		}
 	}
 
-	@GetMapping("/channel/challenge/{challengeId}")
+	@GetMapping("/channel/challenge/{challengeId}/{userId}")
 	@ApiOperation(value = "유저{userId}가 챌린지{challengeId}에 작성한 리뷰를 조회한다.")
-	public ResponseEntity<Review> searchUserReview(@PathVariable int challengeId, String userId) {
+	public ResponseEntity<Review> searchUserReview(@PathVariable int challengeId, @PathVariable String userId) {
 		Review review = rs.searchUserReview(challengeId, userId);
 		if (review == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

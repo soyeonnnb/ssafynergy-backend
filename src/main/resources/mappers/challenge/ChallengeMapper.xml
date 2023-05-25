@@ -9,9 +9,9 @@
 		VALUES
 		(#{name}, #{description}, #{limitPersonNum}, #{publicType}, #{challengeDifficultyId}, #{opportunity}) -->
 		INSERT INTO Challenge
-		(name, challenge_difficulty_id, created_at, start_at, finish_at, limit_person_num, total_day, description)
+		(name, challenge_difficulty_id, created_at, start_at, finish_at, limit_person_num, total_day, description, img)
 		VALUES
-		(#{name}, #{challengeDifficultyId}, now(), #{startAt}, #{finishAt}, #{limitPersonNum}, #{totalDay}, #{description})
+		(#{name}, #{challengeDifficultyId}, now(), #{startAt}, #{finishAt}, #{limitPersonNum}, #{totalDay}, #{description}, #{img})
 	</insert>
 	<update id="update" parameterType="Challenge">
 		UPDATE Challenge
@@ -29,7 +29,7 @@
 			limit_person_num, public_type, challenge_difficulty_id, opportunity,
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
-			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day, img
 		FROM Challenge
 		<if test="key != 'none'">
 			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
@@ -55,7 +55,7 @@
 			limit_person_num, public_type, challenge_difficulty_id, opportunity,
 			(select count(*) from challenge_participate where challenge_id = challenge.id) as participateCnt,
 			(select count(*) from challenge_like where challenge_id = challenge.id) as likeCnt, 
-			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day
+			(select count(*) from review where challenge_id = challenge.id) as reviewCnt, total_day, img
 		FROM Challenge WHERE id=#{id}
 	</select>
 </mapper>
